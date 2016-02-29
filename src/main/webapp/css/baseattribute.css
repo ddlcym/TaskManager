@@ -1,0 +1,87 @@
+body {
+    font-family: "微软雅黑", Arial;
+    font-size: 13px;
+}
+
+.line200 {
+    margin: 20px 0 20px 0;
+    vertical-align: middle
+    /*line-height:200%*/
+}
+
+.font14 {
+    font-size: 14px;
+}
+
+.position-tab {
+    margin: 20px 0 10px 0
+}
+
+.cur{
+
+}
+/* ----------------------------------- navfirst -----------------------------------*/
+div#navfirst {
+    margin: 0 0 0 0;
+    padding: 0;
+    border: 0;
+    background: none repeat scroll 0 0 #f0f0f0;
+    position: relative;
+    min-height: 520px;
+    width: 190px;
+    font-size: large;
+    z-index: 20;
+    float: left;
+}
+
+/* -----------------------------------maincontent -----------------------------------*/
+
+div#maincontent {
+    width: auto;
+    margin: 40px 0 0 200px;
+    padding: 20px 0 20px 0;
+    border: 0;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    background: #ffffff;
+    min-height: 480px;
+
+}
+
+#maincontent #add {
+    margin: 0 0 0 30px;
+}
+
+.position-tab .no {
+    left: 0;
+    width: 50px;
+    text-align: center;
+}
+
+.position-tab .name {
+    left: 50px;
+    width: 180px;
+}
+
+.position-tab .des {
+    left: 230px;
+}
+
+.position-tab .org {
+    left: 50px;
+    width: 180px;
+}
+
+.position-tab .position {
+    left: 50px;
+    width: 180px;
+}
+
+.position-tab .email {
+    left: 230px;
+    width: 180px;
+}
+
+.position-tab .address {
+    left: 410px;
+}

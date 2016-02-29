@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+    <class name="com.changhong.system.domain.DepartmentCategory" table="system_department">
+        <id name="id" column="id" type="java.lang.Integer">
+            <generator class="increment"/>
+        </id>
+        <many-to-one name="parent" column="parent_id" class="com.changhong.system.domain.DepartmentCategory" lazy="proxy" cascade="none" insert="true" update="true"/>
+        <property name="timestamp" column="timestamp" type="java.util.Date"/>
+        <property name="name" column="name" insert="true" update="true" type="java.lang.String"/>
+        <property name="principleUser" column="principle_user" insert="true" update="true" type="java.lang.String"/>
+        <property name="levelType" column="level_type">
+            <type name="com.changhong.common.domain.EnumConverter">
+                <param name="enumClassName">com.changhong.system.domain.LevelType</param>
+            </type>
+        </property>
+
+        <bag name="children" table="system_department" cascade="none" lazy="false" order-by="id asc">
+            <key column="parent_id"/>
+            <one-to-many class="com.changhong.system.domain.DepartmentCategory"/>
+        </bag>
+
+    </class>
+</hibernate-mapping>

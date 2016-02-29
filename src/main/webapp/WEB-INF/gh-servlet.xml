@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--<import resource="architecture/core.xml"/>-->
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:database.properties</value>
+                <value>classpath:application.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <property name="defaultLocale" value="en"/>
+    </bean>
+           <!--前台文件表单form上传的文件解析器-->
+    <bean id="multipartResolver" class="com.changhong.system.web.resolver.ApplicationMultipartResolver">
+        <property name="maxUploadSize" value="1024000000"/>
+    </bean>
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+    </bean>
+
+    <bean class="com.changhong.common.web.handler.ApplicationExceptionHandler"/>
+
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="order" value="0"/>
+        <property name="mappings">
+            <props>
+                <prop key="/error.html">errorHandleController</prop>
+                <prop key="/backend/error.html">errorHandleController</prop>
+                <prop key="/backend/index.html">backendLoginController</prop>
+                <prop key="/backend/dashboard.html">dashboardController</prop>
+
+                <!--用户管理-->
+                <prop key="/backend/user/userorgstructure.html">userorgstructureController</prop>
+                <prop key="/backend/user/userpositionlist.html">userpositionController</prop>
+                <prop key="/backend/user/userole.html">useroleController</prop>
+
+                <!--应用管理-->
+
+                <!--前台客户端接口-->
+            </props>
+
+        </property>
+    </bean>
+
+
+    <bean id="errorHandleController" class="com.changhong.common.web.contorller.ApplicationExceptionController"/>
+
+    <bean id="backendLoginController" class="com.changhong.system.web.controller.BackendLoginController">
+        <property name="projectVersion" value="${application.version}"/>
+    </bean>
+
+    <bean id="dashboardController" class="com.changhong.system.web.controller.DashboardController">
+    </bean>
+
+    <!--用户管理-->
+    <bean id="userorgstructureController" class="com.changhong.user.userorgstructureController">
+    </bean>
+
+    <bean id="userpositionController" class="com.changhong.user.userpositionController">
+    </bean>
+
+    <bean id="useroleController" class="com.changhong.user.useroleController">
+    </bean>
+
+    <!--应用管理-->
+
+    <!--客户端接口-->
+
+
+</beans>
