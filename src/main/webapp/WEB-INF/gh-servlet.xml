@@ -67,13 +67,13 @@
     </bean>
 
     <!--用户管理-->
-    <bean id="userorgstructureController" class="com.changhong.user.userorgstructureController">
+    <bean id="userorgstructureController" class="com.changhong.user.web.controller.userorgstructureController">
     </bean>
 
-    <bean id="userpositionController" class="com.changhong.user.userpositionController">
+    <bean id="userpositionController" class="com.changhong.user.web.controller.userpositionController">
     </bean>
 
-    <bean id="useroleController" class="com.changhong.user.useroleController">
+    <bean id="useroleController" class="com.changhong.user.web.controller.useroleController">
     </bean>
 
     <!--应用管理-->

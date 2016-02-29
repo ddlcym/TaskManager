@@ -1,4 +1,4 @@
-package com.changhong.user;
+package com.changhong.user.web.controller;
 
 
 import org.springframework.web.servlet.ModelAndView;
