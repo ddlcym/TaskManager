@@ -1,7 +1,8 @@
 package com.changhong.system.repository;
 
 
-import com.changhong.system.domain.JobCategory;
+import com.changhong.user.domain.JobCategory;
+import com.changhong.user.repository.JobCategotyDao;
 import junit.framework.TestCase;
 import org.hibernate.SessionFactory;
 import org.junit.After;
@@ -30,7 +31,7 @@ public class JobDaoImplTest extends TestCase{
     SessionFactory sessionFactory;
 
    @Resource
-    JobCategotyDao jobCategotyDao;
+   JobCategotyDao jobCategotyDao;
 
     HibernateTemplate hibernateTemplate;
 

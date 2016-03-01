@@ -1,4 +1,4 @@
-package com.changhong.system.domain;
+package com.changhong.user.domain;
 
 /**
  * Created by IntelliJ IDEA.

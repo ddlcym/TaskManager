@@ -1,7 +1,8 @@
 package com.changhong.system.repository;
 
 
-import com.changhong.system.domain.DepartmentCategory;
+import com.changhong.user.domain.DepartmentCategory;
+import com.changhong.user.repository.DepartmentDao;
 import junit.framework.TestCase;
 import org.hibernate.SessionFactory;
 import org.junit.After;
@@ -30,7 +31,7 @@ public class DepartmentDaoImplTest extends TestCase{
     SessionFactory sessionFactory;
 
    @Resource
-    DepartmentDao departmentDao;
+   DepartmentDao departmentDao;
 
     HibernateTemplate hibernateTemplate;
 

@@ -1,4 +1,4 @@
-package com.changhong.system.domain;
+package com.changhong.user.domain;
 
 import com.changhong.common.domain.EntityBase;
 import org.joda.time.contrib.hibernate.PersistentDateTime;
@@ -23,7 +23,7 @@ public class User extends EntityBase implements UserDetails {
     private String email;    //邮件
     private String address;//联系地址
     private PersistentDateTime lastLogin;//最近一次登录时间
-    private DepartmentCategory  department;//所在部门、小组
+    private DepartmentCategory department;//所在部门、小组
     private List<Role> roles = new ArrayList<Role>();//用户拥有的角色
     private boolean enabled = true;
 

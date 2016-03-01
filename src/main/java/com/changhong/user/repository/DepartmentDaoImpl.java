@@ -1,8 +1,8 @@
-package com.changhong.system.repository;
+package com.changhong.user.repository;
 
 import com.changhong.common.repository.HibernateEntityObjectDao;
-import com.changhong.system.domain.DepartmentCategory;
-import com.changhong.system.domain.LevelType;
+import com.changhong.user.domain.DepartmentCategory;
+import com.changhong.user.domain.LevelType;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 @Repository("departmentDao")
-public class DepartmentDaoImpl extends HibernateEntityObjectDao implements DepartmentDao{
+public class DepartmentDaoImpl extends HibernateEntityObjectDao implements DepartmentDao {
 
      /**************************************类别部分****************************************/
 
@@ -35,7 +35,7 @@ public class DepartmentDaoImpl extends HibernateEntityObjectDao implements Depar
         if (StringUtils.hasText(level)) {
             builder.append(" where dpt.levelType = ?");
         }
-       return getHibernateTemplate().find(builder.toString(),LevelType.valueOf(level));
+       return getHibernateTemplate().find(builder.toString(), LevelType.valueOf(level));
 
    }
 

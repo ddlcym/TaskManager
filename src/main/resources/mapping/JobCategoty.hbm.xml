@@ -4,7 +4,7 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-access="field">
-    <class name="com.changhong.system.domain.JobCategory" table="system_job">
+    <class name="com.changhong.user.domain.JobCategory" table="system_job">
         <id name="id" column="id" type="java.lang.Integer">
             <generator class="increment"/>
         </id>

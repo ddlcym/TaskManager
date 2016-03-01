@@ -1,4 +1,4 @@
-package com.changhong.system.domain;
+package com.changhong.user.domain;
 
 import com.changhong.common.domain.EntityBase;
 
@@ -12,7 +12,7 @@ public class DepartmentCategory extends EntityBase{
     private String name;
     private String principleUser;//部门领导
     private LevelType levelType;//部门级别
-    private DepartmentCategory  parent;//父集部门ID  0表示部门，非0表示小组;
+    private DepartmentCategory parent;//父集部门ID  0表示部门，非0表示小组;
     private List<DepartmentCategory> children;//子部门列表
 
     protected DepartmentCategory() {
@@ -105,7 +105,7 @@ public class DepartmentCategory extends EntityBase{
         this.levelType = levelType;
     }
 
-    public String etLevelType() {
+    public String getLevelType() {
         return levelType.name();
     }
 

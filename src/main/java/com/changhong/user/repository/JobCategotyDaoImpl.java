@@ -1,7 +1,7 @@
-package com.changhong.system.repository;
+package com.changhong.user.repository;
 
 import com.changhong.common.repository.HibernateEntityObjectDao;
-import com.changhong.system.domain.JobCategory;
+import com.changhong.user.domain.JobCategory;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -16,7 +16,7 @@ import java.util.List;
  */
 
 @Repository("JobCategotyDao")
-public class JobCategotyDaoImpl extends HibernateEntityObjectDao implements JobCategotyDao{
+public class JobCategotyDaoImpl extends HibernateEntityObjectDao implements JobCategotyDao {
 
     public List<JobCategory> loadAllCategory() {
      StringBuilder builder = new StringBuilder();

@@ -1,6 +1,6 @@
 package com.changhong.common.repository;
 
-import com.changhong.system.repository.UserDao;
+import com.changhong.user.repository.UserDao;
 
 /**
  * User: Jack Wang

@@ -1,4 +1,4 @@
-package com.changhong.system.domain;
+package com.changhong.user.domain;
 
 import com.changhong.common.domain.EntityBase;
 import com.changhong.common.utils.CHStringUtils;

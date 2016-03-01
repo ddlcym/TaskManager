@@ -1,7 +1,7 @@
-package com.changhong.system.repository;
+package com.changhong.user.repository;
 
 import com.changhong.common.repository.HibernateEntityObjectDao;
-import com.changhong.system.domain.User;
+import com.changhong.user.domain.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.security.core.userdetails.UserDetails;

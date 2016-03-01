@@ -1,7 +1,7 @@
-package com.changhong.system.repository;
+package com.changhong.user.repository;
 
 import com.changhong.common.repository.EntityObjectDao;
-import com.changhong.system.domain.JobCategory;
+import com.changhong.user.domain.JobCategory;
 
 import java.util.List;
 

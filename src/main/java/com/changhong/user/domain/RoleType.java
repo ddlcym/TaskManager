@@ -1,4 +1,4 @@
-package com.changhong.system.domain;
+package com.changhong.user.domain;
 
 /**
  * User: Jack Wang

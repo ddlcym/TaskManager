@@ -5,6 +5,10 @@
     <title>URL</title>
 </head>
 <body>
+
 <c:redirect url="/backend/dashboard.html"/>
+
+
+
 </body>
 </html>

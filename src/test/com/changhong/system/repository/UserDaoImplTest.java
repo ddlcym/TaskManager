@@ -1,9 +1,8 @@
 package com.changhong.system.repository;
 
-import com.changhong.system.domain.DepartmentCategory;
-import com.changhong.system.domain.Role;
-import com.changhong.system.domain.RoleType;
-import com.changhong.system.domain.User;
+import com.changhong.user.domain.DepartmentCategory;
+import com.changhong.user.domain.User;
+import com.changhong.user.repository.UserDaoImpl;
 import junit.framework.TestCase;
 import org.hibernate.SessionFactory;
 import org.junit.After;
