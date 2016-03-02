@@ -15,7 +15,7 @@ public class DepartmentCategory extends EntityBase{
     private DepartmentCategory parent;//父集部门ID  0表示部门，非0表示小组;
     private List<DepartmentCategory> children;//子部门列表
 
-    protected DepartmentCategory() {
+    public DepartmentCategory() {
     }
 
     public DepartmentCategory(String name, String principleUser, String levelType) {
@@ -101,8 +101,8 @@ public class DepartmentCategory extends EntityBase{
         this.name = name;
     }
 
-    public void setLevelType(LevelType levelType) {
-        this.levelType = levelType;
+    public void setLevelType(String levelType) {
+        this.levelType = LevelType.valueOf(levelType);
     }
 
     public String getLevelType() {

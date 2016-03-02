@@ -1,21 +1,21 @@
 package com.changhong.common.repository;
 
-import com.changhong.user.repository.UserDao;
-
 /**
- * User: Jack Wang
- * Date: 14-4-9
- * Time: 下午1:21
+ * Created by IntelliJ IDEA.
+ * User: di
+ * Date: 16-3-1
+ * Time: 下午4:53
+ * To change this template use File | Settings | File Templates.
  */
 public class EntityLoadHolder {
 
-    private static UserDao userDao;
+    private static EntityObjectDao  ObjectDao;
 
-    public static UserDao getUserDao() {
-        return userDao;
+    public static EntityObjectDao getObjectDao() {
+        return ObjectDao;
     }
 
-    public void setUserDao(UserDao userDao) {
-    	EntityLoadHolder.userDao = userDao;
+    public void setObjectDao(EntityObjectDao objectDao) {
+        ObjectDao = objectDao;
     }
 }

@@ -40,7 +40,7 @@
 <%--内容部分***********************************************************--%>
 <div>
      <jsp:include page="/WEB-INF/jsp/backend/common/organization.jsp"/>
-    <div id="maincontent">
+     <div id="maincontent">
         <div id="add">
             <button id="button">添加职位</button>
 
