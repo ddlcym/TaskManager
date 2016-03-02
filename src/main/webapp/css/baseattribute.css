@@ -17,9 +17,38 @@ body {
     margin: 20px 0 10px 0
 }
 
-.cur{
+.cur {
 
 }
+
+.button {
+    margin: 0 4px;
+    font-size: 13px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 20px;
+}
+
+.button-flat-primary:hover {
+    background: #00b5e5;
+}
+
+.button-flat-primary {
+    box-shadow: none;
+    -webkit-transition-property: background;
+    -moz-transition-property: background;
+    -o-transition-property: background;
+    transition-property: background;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    background: #00a1cb;
+    color: white;
+    text-shadow: none;
+    border: none;
+}
+
 /* ----------------------------------- navfirst -----------------------------------*/
 div#navfirst {
     margin: 0 0 0 0;

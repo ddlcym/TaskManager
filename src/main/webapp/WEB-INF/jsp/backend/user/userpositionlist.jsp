@@ -39,17 +39,18 @@
 
 <%--内容部分***********************************************************--%>
 <div>
-     <jsp:include page="/WEB-INF/jsp/backend/common/organization.jsp"/>
+    <jsp:include page="/WEB-INF/jsp/backend/common/organization.jsp"/>
     <div id="maincontent">
         <div id="add">
-            <button id="button">添加职位</button>
-
+            <div class="mybutton">
+                <a id="button" href="${pageContext.request.contextPath}/backend/user/addposition.html" class="button button-flat-primary">添加职位</a>
+            </div>
             <table class="table table-bordered position-tab">
-                <thead >
+                <thead>
                 <tr>
-                    <th class="no" >序号</th>
-                    <th class="name" >名称</th>
-                    <th class="des" >描述</th>
+                    <th class="no">序号</th>
+                    <th class="name">名称</th>
+                    <th class="des">描述</th>
                 </tr>
                 </thead>
             </table>
