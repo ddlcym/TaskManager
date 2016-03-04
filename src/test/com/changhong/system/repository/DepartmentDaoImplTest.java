@@ -86,7 +86,7 @@ public class DepartmentDaoImplTest extends TestCase{
 
     @Test
     public void testGetDepartmentChildrenSize(){
-        int size=departmentDao.getDepartmentChildrenSize("网络");
+        int size=departmentDao.getDepartmentChildrenSize(1);
         System.out.println("DepartmentChildrenSize  is  "+size);
 
     }

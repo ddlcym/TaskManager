@@ -1,5 +1,7 @@
 package com.changhong.common.repository;
 
+import com.changhong.user.repository.UserDao;
+
 /**
  * Created by IntelliJ IDEA.
  * User: di
@@ -9,13 +11,13 @@ package com.changhong.common.repository;
  */
 public class EntityLoadHolder {
 
-    private static EntityObjectDao  ObjectDao;
+     private static UserDao userDao;
 
-    public static EntityObjectDao getObjectDao() {
-        return ObjectDao;
+    public static UserDao getUserDao() {
+        return userDao;
     }
 
-    public void setObjectDao(EntityObjectDao objectDao) {
-        ObjectDao = objectDao;
+    public void setUserDao(UserDao userDao) {
+    	EntityLoadHolder.userDao = userDao;
     }
 }

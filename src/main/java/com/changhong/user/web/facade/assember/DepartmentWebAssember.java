@@ -3,7 +3,6 @@ package com.changhong.user.web.facade.assember;
 import com.changhong.common.repository.EntityLoadHolder;
 import com.changhong.user.domain.DepartmentCategory;
 import com.changhong.user.web.facade.dto.DepartmentCategoryDTO;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,15 +18,16 @@ public class DepartmentWebAssember {
     public static DepartmentCategory toDepartmentDomain( int categoryId, String categoryName, String principleUser,String level,int parentId) {
         DepartmentCategory department = null;
         if (categoryId > 0) {
-            department = (DepartmentCategory) EntityLoadHolder.getObjectDao().findById(categoryId, DepartmentCategory.class);
+            department = (DepartmentCategory) EntityLoadHolder.getUserDao().findById(categoryId, DepartmentCategory.class);
             department.setName(categoryName);
+            department.setLevelType(level);
             department.setPrincipleUser(principleUser);
         } else {
             department = new DepartmentCategory(categoryName, principleUser,level);
         }
 
         if (parentId > 0) {
-            DepartmentCategory parent = (DepartmentCategory) EntityLoadHolder.getObjectDao().findById(parentId, DepartmentCategory.class);
+            DepartmentCategory parent = (DepartmentCategory) EntityLoadHolder.getUserDao().findById(parentId, DepartmentCategory.class);
             if(null != parent){
                 department.setParent(parent);
             }
@@ -40,7 +40,7 @@ public class DepartmentWebAssember {
         final String name = department.getName();
         final String principleUser = department.getPrincipleUser();
         final String levelType = department.getLevelType();
-        final int parentID = department.getParent().getId();
+        final int parentID = (null == department.getParent())?-1:department.getParent().getId();
 
 
         DepartmentCategoryDTO dto =  new DepartmentCategoryDTO(id, name, principleUser, levelType, parentID);
@@ -51,7 +51,6 @@ public class DepartmentWebAssember {
             }
         }
         dto.setChildren(children);
-
         return dto;
     }
 

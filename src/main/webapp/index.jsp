@@ -6,8 +6,8 @@
 </head>
 <body>
 
-<c:redirect url="/backend/dashboard.html"/>
 
+<c:redirect url="/backend/dashboard.html"/>
 
 
 </body>

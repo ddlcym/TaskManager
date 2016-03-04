@@ -53,14 +53,13 @@ public class DepartmentDaoImpl extends HibernateEntityObjectDao implements Depar
 
 
 
-    public int getDepartmentChildrenSize(String name){
+    public int getDepartmentChildrenSize(int id){
         int childrenSize=0;
         StringBuilder builder = new StringBuilder();
         builder.append("from DepartmentCategory dpt");
-        if (StringUtils.hasText(name)) {
-            builder.append(" where dpt.name like '%" + name + "%'");
-        }
-        List<DepartmentCategory> list =  getHibernateTemplate().find(builder.toString());
+        builder.append(" where dpt.id = ?");
+
+        List<DepartmentCategory> list =  getHibernateTemplate().find(builder.toString(),id);
         if(!list.isEmpty()){
              DepartmentCategory dpt=list.get(0);
              List<DepartmentCategory> children= dpt.getAllCategoryBelow();

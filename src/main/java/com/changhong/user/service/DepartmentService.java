@@ -19,13 +19,13 @@ public interface DepartmentService {
 
     List<DepartmentCategoryDTO> obtainCategoryByLevel(String level);
 
-    void saveOrUpdateDepartmentCategory(int categoryId, String categoryName,String principleUser, String level,int parentId);
+    void saveOrUpdateDepartmentCategory(int departmentId, String categoryName,String principleUser, String level,int parentId);
 
-    DepartmentCategoryDTO obtainDepartmentCategoryById(int categoryId);
+    DepartmentCategoryDTO obtainDepartmentCategoryById(int departmentId);
 
     void deleteDepartmentCategory(int categoryId);
 
-    boolean obtainCategoryHasDepartments(int categoryId);
+    boolean obtainDepartmentHasChildren(int departmentId);
 
     boolean obtainDepartmentExist(int departmentId, String departmentName);
 

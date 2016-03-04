@@ -44,6 +44,9 @@
                 <prop key="/backend/dashboard.html">dashboardController</prop>
 
                 <!--用户管理-->
+                <prop key="/backend/user/departmentdelete.html">departmentController</prop>
+                <prop key="/backend/user/departmentform.html">departmentController</prop>
+                <prop key="/backend/user/departmentoverview.html">departmentManagerController</prop>
                 <prop key="/backend/user/userorgstructure.html">userorgstructureController</prop>
                 <prop key="/backend/user/userpositionlist.html">userpositionController</prop>
                 <prop key="/backend/user/userole.html">useroleController</prop>
@@ -51,6 +54,8 @@
                 <!--应用管理-->
 
                 <!--前台客户端接口-->
+
+
             </props>
 
         </property>
@@ -67,6 +72,15 @@
     </bean>
 
     <!--用户管理-->
+    <bean id="departmentController" class="com.changhong.user.web.controller.DepartmentController">
+        <property name="departmentService" ref="departmentService"/>
+        <property name="fileRequestHost" value="${application.file.request.path}"/>
+    </bean>
+    <bean id="departmentManagerController" class="com.changhong.user.web.controller.DepartmentManagerController">
+        <property name="departmentService" ref="departmentService"/>
+        <property name="fileRequestHost" value="${application.file.request.path}"/>
+    </bean>
+
     <bean id="userorgstructureController" class="com.changhong.user.web.controller.userorgstructureController">
     </bean>
 

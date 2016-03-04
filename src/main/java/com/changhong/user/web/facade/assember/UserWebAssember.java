@@ -21,7 +21,7 @@ public class UserWebAssember {
         if(userDTO == null) return null;
 
         if (userDTO.getId() > 0) {
-            user = (User) EntityLoadHolder.getObjectDao().findById(userDTO.getId(), User.class);
+            user = (User) EntityLoadHolder.getUserDao().findById(userDTO.getId(), User.class);
             user.setId(userDTO.getId());
             user.setAccount(userDTO.getAccount());
             user.setUsername(userDTO.getUsername());

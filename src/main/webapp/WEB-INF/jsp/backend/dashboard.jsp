@@ -6,7 +6,7 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
-    <title>任务后台管理系统</title>
+    <title>任务管理后台管理系统</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-responsive.min.css"/>
@@ -40,6 +40,8 @@
 <%--内容部分***********************************************************--%>
 <div>
      <jsp:include page="/WEB-INF/jsp/backend/common/organization.jsp"/>
+
+    <%--
      <div id="maincontent">
         <div id="add">
             <button id="button">添加职位</button>
@@ -55,6 +57,7 @@
             </table>
         </div>
     </div>
+    --%>
 </div>
 
 </body>

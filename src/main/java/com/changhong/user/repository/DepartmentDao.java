@@ -22,7 +22,7 @@ public interface DepartmentDao extends EntityObjectDao{
 
     List<DepartmentCategory> findDepartmentByName(String name);
 
-    int getDepartmentChildrenSize(String name);
+    int getDepartmentChildrenSize(int id);
 
 
    /****************************************增、删、改、查************************************************/
