@@ -1,7 +1,7 @@
 package com.changhong.user.repository;
 
 import com.changhong.common.repository.HibernateEntityObjectDao;
-import com.changhong.user.domain.JobCategory;
+import com.changhong.user.domain.Position;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -18,16 +18,16 @@ import java.util.List;
 @Repository("JobCategotyDao")
 public class JobCategotyDaoImpl extends HibernateEntityObjectDao implements JobCategotyDao {
 
-    public List<JobCategory> loadAllCategory() {
+    public List<Position> loadAllCategory() {
      StringBuilder builder = new StringBuilder();
-     builder.append("from JobCategory");
+     builder.append("from Position");
      return getHibernateTemplate().find(builder.toString());
     }
 
-    public List<JobCategory> findJobByName(String name) {
-       JobCategory job = null;
+    public List<Position> findJobByName(String name) {
+       Position job = null;
        StringBuilder builder = new StringBuilder();
-       builder.append("from JobCategory job");
+       builder.append("from Position job");
         if (StringUtils.hasText(name)) {
             builder.append(" where job.name like '%" + name + "%'");
         }
@@ -36,7 +36,7 @@ public class JobCategotyDaoImpl extends HibernateEntityObjectDao implements JobC
 
     public int getJobCategorySize() {
         StringBuilder builder = new StringBuilder();
-        builder.append("select count(job.id) from JobCategory job");
+        builder.append("select count(job.id) from Position job");
         List list =  getHibernateTemplate().find(builder.toString());
         return ((Long)list.get(0)).intValue();    }
 }

@@ -1,7 +1,7 @@
 package com.changhong.system.repository;
 
 
-import com.changhong.user.domain.JobCategory;
+import com.changhong.user.domain.Position;
 import com.changhong.user.repository.JobCategotyDao;
 import junit.framework.TestCase;
 import org.hibernate.SessionFactory;
@@ -50,15 +50,15 @@ public class JobDaoImplTest extends TestCase{
     public void testAddJob(){
 //加入一个对象(记录)
 
-			JobCategory job=new JobCategory("测试工程师");
+			Position job=new Position("测试工程师");
             jobCategotyDao.saveOrUpdate(job);
     }
 
       @Test
     public void testLoadAllCategory(){
-        List<JobCategory> list=jobCategotyDao.loadAllCategory();
+        List<Position> list=jobCategotyDao.loadAllCategory();
          for (int i = 0; i < list.size(); i++) {
-            JobCategory job = list.get(i) ;
+            Position job = list.get(i) ;
              System.out.println(job.getId() + job.getName());
         }
     }
@@ -67,8 +67,8 @@ public class JobDaoImplTest extends TestCase{
 
      @Test
      public void testModifyJob(){
-         List<JobCategory> list=jobCategotyDao.findJobByName("研发工程师");
-         JobCategory job=list.get(0);
+         List<Position> list=jobCategotyDao.findJobByName("研发工程师");
+         Position job=list.get(0);
          job.setName("研发工程师测试");
          jobCategotyDao.saveOrUpdate(job);
 
@@ -77,8 +77,8 @@ public class JobDaoImplTest extends TestCase{
 
       @Test
      public void testDeleteJob(){
-         List<JobCategory> list=jobCategotyDao.findJobByName("测试工程师");
-         JobCategory job=list.get(0);
+         List<Position> list=jobCategotyDao.findJobByName("测试工程师");
+         Position job=list.get(0);
          jobCategotyDao.delete(job);
     }
 }

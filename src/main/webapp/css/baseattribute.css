@@ -21,6 +21,31 @@ body {
 
 }
 
+
+
+div#usermaincontent{
+    margin:  40px 0 0 10px;
+}
+
+
+/* ----------------------------------- form -----------------------------------*/
+.name-label{
+    float: left;
+    width: 60px;
+    text-align: right;
+    padding-top: 10px;
+    padding-right: 10px;
+    font-weight: bold;
+}
+
+
+/* ----------------------------------- input -----------------------------------*/
+.input-text-des{
+    width: 480px;
+    height: 400px;
+}
+
+/* ----------------------------------- button -----------------------------------*/
 .button {
     margin: 0 4px;
     font-size: 13px;
@@ -48,6 +73,11 @@ body {
     text-shadow: none;
     border: none;
 }
+.btndiv{
+    margin: 0 0 20px 15px;
+}
+
+
 
 /* ----------------------------------- navfirst -----------------------------------*/
 div#navfirst {
@@ -63,11 +93,13 @@ div#navfirst {
     float: left;
 }
 
+
+
 /* -----------------------------------maincontent -----------------------------------*/
 
 div#maincontent {
     width: auto;
-    margin: 40px 0 0 200px;
+    margin:0 10px 10px 200px;
     padding: 20px 0 20px 0;
     border: 0;
     border-top: 1px solid #aaa;
@@ -113,4 +145,10 @@ div#maincontent {
 
 .position-tab .address {
     left: 410px;
+}
+/*-----------------------------------添加职位-----------------------------------*/
+
+
+#addposition #btnDiv {
+    margin: 0 0 20px 0;
 }

@@ -38,7 +38,7 @@
 <jsp:include page="/WEB-INF/jsp/backend/common/header.jsp"/>
 
 <%--内容部分***********************************************************--%>
-<div>
+<div id="usermaincontent">
      <jsp:include page="/WEB-INF/jsp/backend/common/organization.jsp"/>
     <div id="maincontent">
         <div id="add">

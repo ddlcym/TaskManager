@@ -1,7 +1,7 @@
 package com.changhong.user.repository;
 
 import com.changhong.common.repository.EntityObjectDao;
-import com.changhong.user.domain.JobCategory;
+import com.changhong.user.domain.Position;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import java.util.List;
 public interface JobCategotyDao extends EntityObjectDao {
      /**************************************类别部分****************************************/
 
-    List<JobCategory> loadAllCategory();
-    List<JobCategory> findJobByName(String name);
+    List<Position> loadAllCategory();
+    List<Position> findJobByName(String name);
     int getJobCategorySize();
 }

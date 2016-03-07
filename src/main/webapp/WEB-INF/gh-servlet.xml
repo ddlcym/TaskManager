@@ -51,6 +51,7 @@
                 <prop key="/backend/user/userpositionlist.html">userpositionController</prop>
                 <prop key="/backend/user/userole.html">useroleController</prop>
 
+                <prop key="/backend/user/addposition.html">addpositioncontroller</prop>
                 <!--应用管理-->
 
                 <!--前台客户端接口-->
@@ -88,6 +89,10 @@
     </bean>
 
     <bean id="useroleController" class="com.changhong.user.web.controller.useroleController">
+    </bean>
+
+    <bean id="addpositioncontroller" class="com.changhong.user.web.controller.addpositioncontroller">
+        <property name="positionService" ref="positionService"/>
     </bean>
 
     <!--应用管理-->
