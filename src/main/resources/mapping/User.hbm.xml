@@ -37,4 +37,5 @@
             </type>
         </property>
     </class>
+
 </hibernate-mapping>

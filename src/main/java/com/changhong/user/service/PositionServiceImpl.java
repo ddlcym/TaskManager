@@ -1,6 +1,8 @@
 package com.changhong.user.service;
 
+import com.changhong.user.repository.PositionDao;
 import com.changhong.user.web.facade.dto.PositionDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +17,8 @@ import java.util.List;
 @Service("positionService")
 public class PositionServiceImpl implements PositionService{
 
+    @Autowired
+    private PositionDao positionDao;
 
     public PositionDTO obtainPositionById(int positionId) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.

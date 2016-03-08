@@ -4,11 +4,12 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-access="field">
-    <class name="com.changhong.user.domain.Position" table="system_job">
+    <class name="com.changhong.user.domain.Position" table="system_position">
         <id name="id" column="id" type="java.lang.Integer">
             <generator class="increment"/>
         </id>
         <property name="timestamp" column="timestamp" type="java.util.Date"/>
         <property name="name" column="name" insert="true" update="true" type="java.lang.String"/>
+        <property name="des" column="description" insert="true" update="true" type="java.lang.String"/>
     </class>
 </hibernate-mapping>

@@ -12,10 +12,10 @@ import java.util.List;
  * Time: 下午1:47
  * To change this template use File | Settings | File Templates.
  */
-public interface JobCategotyDao extends EntityObjectDao {
+public interface PositionDao extends EntityObjectDao {
      /**************************************类别部分****************************************/
 
     List<Position> loadAllCategory();
-    List<Position> findJobByName(String name);
-    int getJobCategorySize();
+    List<Position> findPosByName(String name);
+    int getPosSize();
 }

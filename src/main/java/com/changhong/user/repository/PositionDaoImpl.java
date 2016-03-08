@@ -15,8 +15,8 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 
-@Repository("JobCategotyDao")
-public class JobCategotyDaoImpl extends HibernateEntityObjectDao implements JobCategotyDao {
+@Repository("PositionDao")
+public class PositionDaoImpl extends HibernateEntityObjectDao implements PositionDao {
 
     public List<Position> loadAllCategory() {
      StringBuilder builder = new StringBuilder();
@@ -24,19 +24,20 @@ public class JobCategotyDaoImpl extends HibernateEntityObjectDao implements JobC
      return getHibernateTemplate().find(builder.toString());
     }
 
-    public List<Position> findJobByName(String name) {
-       Position job = null;
+    public List<Position> findPosByName(String name) {
+       Position pos = null;
        StringBuilder builder = new StringBuilder();
-       builder.append("from Position job");
+       builder.append("from Position pos");
         if (StringUtils.hasText(name)) {
-            builder.append(" where job.name like '%" + name + "%'");
+            builder.append(" where pos.name like '%" + name + "%'");
         }
         return  getHibernateTemplate().find(builder.toString());
     }
 
-    public int getJobCategorySize() {
+    public int getPosSize() {
         StringBuilder builder = new StringBuilder();
-        builder.append("select count(job.id) from Position job");
+        builder.append("select count(pos.id) from Position pos");
         List list =  getHibernateTemplate().find(builder.toString());
         return ((Long)list.get(0)).intValue();    }
+
 }
