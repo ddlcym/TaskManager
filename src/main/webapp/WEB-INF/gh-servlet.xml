@@ -50,6 +50,8 @@
                 <prop key="/backend/user/userorgstructure.html">userorgstructureController</prop>
                 <prop key="/backend/user/userpositionlist.html">userpositionController</prop>
                 <prop key="/backend/user/userole.html">useroleController</prop>
+                <prop key="/backend/user/usermanager.html">userManagerController</prop>
+                <prop key="/backend/user/useradd.html">userAddController</prop>
 
                 <prop key="/backend/user/addposition.html">addpositioncontroller</prop>
                 <!--应用管理-->
@@ -89,6 +91,13 @@
     </bean>
 
     <bean id="useroleController" class="com.changhong.user.web.controller.useroleController">
+    </bean>
+    <bean id="userManagerController" class="com.changhong.user.web.controller.UserManagerController">
+          <property name="userService" ref="userService"/>
+    </bean>
+    <bean id="userAddController" class="com.changhong.user.web.controller.UserAddController">
+        <property name="userService" ref="userService"/>
+        <property name="departmentService" ref="departmentService"/>
     </bean>
 
     <bean id="addpositioncontroller" class="com.changhong.user.web.controller.addpositioncontroller">

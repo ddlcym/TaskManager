@@ -1,7 +1,7 @@
 package com.changhong.user.service;
 
-import com.changhong.system.web.facade.dto.UserDTO;
-import com.changhong.system.web.facade.dto.UserPasswordDTO;
+import com.changhong.user.web.facade.dto.UserDTO;
+import com.changhong.user.web.facade.dto.UserPasswordDTO;
 import com.changhong.user.domain.User;
 import com.changhong.user.repository.UserDao;
 import com.changhong.user.web.facade.assember.UserWebAssember;

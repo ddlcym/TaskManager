@@ -666,7 +666,7 @@ margin-bottom:0; vertical-align:middle; *zoom:1
 .form-search .checkbox input[type="checkbox"],
 .form-inline .radio input[type="radio"],
 .form-inline .checkbox input[type="checkbox"] { float:left; margin-right:3px; margin-left:0 }
-.control-group { margin-bottom:10px }
+.control-group { margin-bottom:0px }
 legend+.control-group { margin-top:20px; -webkit-margin-top-collapse:separate }
 .form-horizontal .control-group { margin-bottom:20px; *zoom:1
 }

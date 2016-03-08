@@ -32,11 +32,11 @@ public class DepartmentManagerController extends AbstractController {
         Map<String, Object> model = new HashMap<String, Object>();
         List<DepartmentCategoryDTO> departments = departmentService.obtainAllCategory();
 
-        if(null !=departments){
-            for(DepartmentCategoryDTO department:departments){
-                 System.out.print("department is "+department.getName());
-            }
-        }
+//        if(null !=departments){
+//            for(DepartmentCategoryDTO department:departments){
+//                 System.out.print("department is "+department.getName());
+//            }
+//        }
         model.put("departments", departments);
         model.put("fileRequestHost", fileRequestHost);
         return new ModelAndView("backend/user/departmentoverview", model);

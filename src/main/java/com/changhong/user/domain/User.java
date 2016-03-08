@@ -19,21 +19,28 @@ public class User extends EntityBase implements UserDetails {
     private String username;//用户真实姓名
     private String account;//登录账号
     private String password;//登录密码
-    private  int   employeeId;//员工编号
+//    private  int   employeeId;//员工编号
+    private String employeeId;//员工编号
     private String email;    //邮件
     private String address;//联系地址
     private PersistentDateTime lastLogin;//最近一次登录时间
     private DepartmentCategory department;//所在部门、小组
+    private String position;    //职位
     private List<Role> roles = new ArrayList<Role>();//用户拥有的角色
     private boolean enabled = true;
 
     public User() {
     }
 
-    public User(String account, String password,int employeeId) {
+//    public User(String username,String account,String password,int employeeId,String email,String address,String position) {
+    public User(String username,String account,String password,String employeeId,String email,String address,String position) {
+        this.username = username;
         this.account = account;
         this.password = password;
         this.employeeId = employeeId;
+        this.email = email;
+        this.address = address;
+        this.position = position;
         this.enabled = true;
     }
 
@@ -64,11 +71,18 @@ public class User extends EntityBase implements UserDetails {
         this.account = account;
     }
 
-    public int getEmployeeId() {
+//    public int getEmployeeId() {
+//        return employeeId;
+//    }
+//
+//    public void setEmployeeId(int employeeId) {
+//        this.employeeId = employeeId;
+//    }
+    public String getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(String employeeId) {
         this.employeeId = employeeId;
     }
 
@@ -102,6 +116,14 @@ public class User extends EntityBase implements UserDetails {
 
     public void setDepartment(DepartmentCategory department) {
         this.department = department;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public String getPosition() {
+        return position;
     }
 
     /*************************************************GETTER**********************************************************/

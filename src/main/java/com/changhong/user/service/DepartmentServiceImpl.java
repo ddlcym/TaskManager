@@ -24,7 +24,7 @@ public class DepartmentServiceImpl implements DepartmentService{
     private DepartmentDao departmentDao;
 
     public List<DepartmentCategoryDTO> obtainAllCategory() {
-        System.out.print("departmentDao is "+((null==departmentDao)?"null":"not null"));
+//        System.out.print("departmentDao is "+((null==departmentDao)?"null":"not null"));
         List<DepartmentCategory> departments = departmentDao.loadAllCategory();
         return DepartmentWebAssember.toDepartmentCategoryDTOList(departments);
     }
