@@ -34,16 +34,12 @@ public class DepartmentServiceImpl implements DepartmentService{
         return DepartmentWebAssember.toDepartmentCategoryDTOList(departments);
     }
 
-
-
     public void saveOrUpdateDepartmentCategory(int departmentId, String categoryName, String principleUser, String level,int parentId) {
         //To change body of implemented methods use File | Settings | File Templates.
          DepartmentCategory department = DepartmentWebAssember.toDepartmentDomain(departmentId, categoryName, principleUser, level,parentId);
          departmentDao.saveOrUpdate(department);
 
     }
-
-
 
     public DepartmentCategoryDTO obtainDepartmentCategoryById(int departmentId) {
         DepartmentCategory department = (DepartmentCategory)departmentDao.findById(departmentId,DepartmentCategory.class);

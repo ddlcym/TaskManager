@@ -3,6 +3,7 @@ package com.changhong.user.web.controller;
 import com.changhong.user.service.PositionService;
 import com.changhong.user.web.facade.dto.PositionDTO;
 import com.changhong.user.web.facade.dto.UserDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,6 +31,7 @@ public class addpositioncontroller extends SimpleFormController {
 //        model.put("MANAGE_KEY", "STRUCTURE");
 //        return new ModelAndView("backend/user/addposition", model);
 //    }
+    @Autowired
     private PositionService positionService;
 
     public addpositioncontroller() {
@@ -64,6 +66,7 @@ public class addpositioncontroller extends SimpleFormController {
     protected ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object command, BindException errors) throws Exception {
         PositionDTO positionDTO=(PositionDTO)command;
 
+        positionService.saveOrUpPos(positionDTO);
 
         return new ModelAndView(new RedirectView("userpositionlist.html"));    //To change body of overridden methods use File | Settings | File Templates.
     }

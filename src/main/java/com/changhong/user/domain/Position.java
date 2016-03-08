@@ -12,8 +12,14 @@ public class Position extends EntityBase{
     }
 
     public Position(String name) {
-        this.name = name;
+        this(name,"");
     }
+
+    public Position(String name, String des) {
+        this.name = name;
+        this.des = des;
+    }
+
     public String getDes() {
         return des;
     }

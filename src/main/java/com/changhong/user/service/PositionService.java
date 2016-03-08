@@ -18,13 +18,17 @@ public interface PositionService {
 
     PositionDTO obtainPositionById(int positionId);
 
-    List<PositionDTO> obtainPositions(String name, int startPosition, int pageSize);
+    List<PositionDTO> obtainAllPositions();
 
     int obtainPositionSize(String name);
 
     boolean obtainPositionExist(int positionId, String name);
 
-    void changePositionDetails(PositionDTO positionDTO);
+    void saveOrUpPos(PositionDTO positionDTO);
+
+    void deleteById(int posID);
+
+    void changePosDetails(PositionDTO positionDTO);
 
     void changeStatusForPosition(int positionId);
 }

@@ -11,8 +11,11 @@ import java.io.Serializable;
  */
 public class PositionDTO implements Serializable {
 
-    private String name;
-    private String des;
+
+
+    private int id=-1;
+    private String name="";
+    private String des="";
 
     public PositionDTO() {
     }
@@ -22,6 +25,13 @@ public class PositionDTO implements Serializable {
         this.des = des;
     }
 
+     public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getName() {
         return name;
     }
