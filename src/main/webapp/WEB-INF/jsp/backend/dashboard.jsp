@@ -39,7 +39,7 @@
 
 
 <%--内容部分***********************************************************--%>
-<div>
+<div id="usermaincontent">
      <jsp:include page="/WEB-INF/jsp/backend/common/organization.jsp"/>
 </div>
 
