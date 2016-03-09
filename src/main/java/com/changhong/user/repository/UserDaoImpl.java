@@ -23,6 +23,12 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
         return users.isEmpty() ? null : users.get(0);
     }
 
+    public List<User> loadAllUser(){
+        StringBuilder builder = new StringBuilder();
+        builder.append("from User");
+        return getHibernateTemplate().find(builder.toString());
+    }
+
     public List<User> loadUsers(String name, int startPosition, int pageSize) {
         StringBuilder builder = new StringBuilder();
         builder.append("from User u");

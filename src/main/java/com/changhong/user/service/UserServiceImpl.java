@@ -33,9 +33,20 @@ public class UserServiceImpl implements UserService {
         return UserWebAssember.toUserDTO(user);
     }
 
+
+    public List<UserDTO> obtainAllUser(){
+        List<User> users = userDao.loadAllUser();
+        return UserWebAssember.toUserDTOList(users);
+    }
+
     public List<UserDTO> obtainUsers(String name, int startPosition, int pageSize) {
         List<User> users = userDao.loadUsers(name, startPosition, pageSize);
         return UserWebAssember.toUserDTOList(users);
+    }
+
+    public void deleteUserById(int userId){
+        User user = (User)userDao.findById(userId,User.class);
+        userDao.delete(user);
     }
 
     public int obtainUserSize(String name) {

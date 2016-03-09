@@ -22,7 +22,7 @@ public class UserDTO implements Serializable {
     private String departmentName;
     private String fullDepartmentName;
     private String position;
-    private String Email;
+    private String email;
     private String address;
     private boolean enabled;
 
@@ -32,7 +32,7 @@ public class UserDTO implements Serializable {
         this.password = CHStringUtils.getRandomString(10);
     }
 
-    public UserDTO(int id, String username, String employeeId, String account, String password, int departmentId,String departmentName,String fullDepartmentPath,String position,String Email,String address,boolean enabled) {
+    public UserDTO(int id, String username, String employeeId, String account, String password, int departmentId,String departmentName,String fullDepartmentPath,String position,String email,String address,boolean enabled) {
         this.id = id;
         this.username= username;
         this.employeeId = employeeId;
@@ -42,7 +42,7 @@ public class UserDTO implements Serializable {
         this.departmentName = departmentName;
         this.fullDepartmentName = fullDepartmentPath;
         this.position = position;
-        this.Email = Email;
+        this.email = email;
         this.address = address;
         this.enabled = enabled;
     }
@@ -158,11 +158,11 @@ public class UserDTO implements Serializable {
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public String getAddress() {

@@ -2,6 +2,7 @@ package com.changhong.user.service;
 
 import com.changhong.user.web.facade.dto.UserDTO;
 import com.changhong.user.web.facade.dto.UserPasswordDTO;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
@@ -15,7 +16,11 @@ public interface UserService extends UserDetailsService {
 
     UserDTO obtainUserById(int userId);
 
+    List<UserDTO> obtainAllUser();
+
     List<UserDTO> obtainUsers(String name, int startPosition, int pageSize);
+
+    void deleteUserById(int userId);
 
     int obtainUserSize(String name);
 

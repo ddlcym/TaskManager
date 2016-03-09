@@ -49,6 +49,8 @@ public class UserAddController extends SimpleFormController{
 
         int userId = ServletRequestUtils.getIntParameter(request, "userId", -1);
 
+        System.out.print(userId);
+
         //编辑用户使用
         if(userId > 0){
 
@@ -109,7 +111,7 @@ public class UserAddController extends SimpleFormController{
 
         userService.changeUserDetails(userDTO);
 
-        return new ModelAndView(new RedirectView("usermanager.html"));
+        return new ModelAndView(new RedirectView("useroverview.html"));
 
     }
 

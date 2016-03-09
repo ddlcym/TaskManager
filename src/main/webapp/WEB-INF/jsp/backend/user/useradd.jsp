@@ -42,7 +42,7 @@
         <div id="add">
             <spring-form:form commandName="user" class="form-horizontal" method="post" name="basic_validate" id="basic_validate" novalidate="novalidate">
                 <div id="form-action">
-                   <input type="button" value="返 回" class="button button-flat-primary" onclick="window.location.href='${pageContext.request.contextPath}/backend/user/usermanager.html'"/>
+                   <input type="button" value="返 回" class="button button-flat-primary" onclick="window.location.href='${pageContext.request.contextPath}/backend/user/useroverview.html'"/>
                                 &nbsp;&nbsp;
                    <input type="submit" value="保 存" class="button button-flat-primary"/>
                 </div>
@@ -69,10 +69,10 @@
                     <label class="control-label"><span style="color: red;">*</span>用户名</label>
                     <div class="controls">
                         <c:set var="justRead" value="false"/>
-                        <c:if test="$(user.id > 0)">
+                        <c:if test="${user.id > 0}">
                            <c:set var="justRead" value="true"/>
                         </c:if>
-                        <spring-form:input path="account" cssStyle="height: 30px;" readonly="$(justRead)"/>&nbsp;
+                        <spring-form:input path="account" cssStyle="height: 30px;" readonly="${justRead}"/>&nbsp;
                         <spring-form:errors path="account" cssClass="help-inline"/>
                     </div>
                 </div>
