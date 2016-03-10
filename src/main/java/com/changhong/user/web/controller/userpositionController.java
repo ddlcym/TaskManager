@@ -1,11 +1,16 @@
 package com.changhong.user.web.controller;
 
+import com.changhong.user.domain.Position;
+import com.changhong.user.service.PositionService;
+import com.changhong.user.web.facade.dto.PositionDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,10 +21,19 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 public class userpositionController extends AbstractController {
+
+    @Autowired
+    private PositionService positionService;
+
     @Override
     protected ModelAndView handleRequestInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
         Map<String, Object> model = new HashMap<String, Object>();
-        model.put("MANAGE_KEY", "STRUCTURE");
+        List<PositionDTO> posDTOList=positionService.obtainAllPositions();
+        model.put("posDTOList", posDTOList);
         return new ModelAndView("backend/user/userpositionlist", model);
+    }
+
+    public void setPositionService(PositionService positionService){
+        this.positionService=positionService;
     }
 }

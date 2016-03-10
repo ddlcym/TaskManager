@@ -55,6 +55,7 @@
                 <prop key="/backend/user/userdelete.html">userDeleteController</prop>
 
                 <prop key="/backend/user/addposition.html">addpositioncontroller</prop>
+                <prop key="/backend/user/deleteposition.html">deletepositioncontroller</prop>
                 <!--应用管理-->
 
                 <!--前台客户端接口-->
@@ -89,6 +90,7 @@
     </bean>
 
     <bean id="userpositionController" class="com.changhong.user.web.controller.userpositionController">
+        <property name="positionService" ref="positionService"/>
     </bean>
 
     <bean id="useroleController" class="com.changhong.user.web.controller.useroleController">
@@ -104,7 +106,11 @@
         <property name="userService" ref="userService"/>
     </bean>
 
-    <bean id="addpositioncontroller" class="com.changhong.user.web.controller.addpositioncontroller">
+    <bean id="addpositioncontroller" class="com.changhong.user.web.controller.positioncontroller">
+        <property name="positionService" ref="positionService"/>
+    </bean>
+
+    <bean id="deletepositioncontroller" class="com.changhong.user.web.controller.DeletePosController">
         <property name="positionService" ref="positionService"/>
     </bean>
 

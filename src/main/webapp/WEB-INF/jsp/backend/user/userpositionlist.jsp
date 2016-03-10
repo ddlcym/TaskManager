@@ -43,7 +43,8 @@
     <div id="maincontent">
         <div id="add">
             <div class="mybutton">
-                <a id="button" href="${pageContext.request.contextPath}/backend/user/addposition.html" class="button button-flat-primary">添加职位</a>
+                <a id="button" href="${pageContext.request.contextPath}/backend/user/addposition.html?posId=-1&method=add"
+                   class="button button-flat-primary">添加职位</a>
             </div>
             <table class="table table-bordered position-tab">
                 <thead>
@@ -51,12 +52,140 @@
                     <th class="no">序号</th>
                     <th class="name">名称</th>
                     <th class="des">描述</th>
+                    <th class="edit">编辑</th>
                 </tr>
                 </thead>
+                <tbody>
+                    <c:forEach items="${posDTOList}" var="pos" varStatus="status">
+                            <tr class="gradeX">
+                                <td>${status.count}</td>
+                                <td>${pos.name}</td>
+                                <td>${pos.des}</td>
+
+                                <td class="more-details">
+                                    <a href="${pageContext.request.contextPath}/backend/user/addposition.html?posId=${pos.id}&method=update"
+                                       <%--onclick="openDepartmentDialog('${pos.id}', 'update');"--%>
+                                       class="btn btn-primary btn-mini">修改</a>
+                                    <a href="${pageContext.request.contextPath}/backend/user/deleteposition.html?posId=${pos.id}&method=delete"
+                                       <%--onclick="departmentDeleteConfirm('${pos.id}');"--%>
+                                       class="btn btn-primary btn-mini">删除</a>
+
+                                </td>
+                            </tr>
+                        </c:forEach>
+
+                </tbody>
             </table>
         </div>
     </div>
 </div>
+
+
+<div id="department_delete_dialog" title="确认对话框?" style="visibility: hidden;">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
+        请确认你是否要删除该职位？
+    </p>
+</div>
+
+<div id="department_delete_refuse" title="确认对话框?" style="visibility: hidden;">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
+        该职位下已经存在，请转移后再删除。
+    </p>
+</div>
+<script >
+
+    jQuery(function() {
+            settings = {
+                align : 'center',                                    //Valid values, left, right, center
+                top : 50,                                             //Use an integer (in pixels)
+                width : 600,                                         //Use an integer (in pixels)
+                padding : 10,                                        //Use an integer (in pixels)
+                backgroundColor : 'white',                             //Use any hex code
+                source : '',                                         //Refer to any page on your server, external pages are not valid e.g. http://www.google.co.uk
+                borderColor : '#333333',                             //Use any hex code
+                borderWeight : 4,                                    //Use an integer (in pixels)
+                borderRadius : 5,                                     //Use an integer (in pixels)
+                fadeOutTime : 300,                                     //Use any integer, 0 : no fade
+                disableColor : '#666666',                             //Use any hex code
+                disableOpacity : 40,                                 //Valid range 0-100
+                loadingImage : '${pageContext.request.contextPath}/js/popup/loading.gif'
+            };
+            jQuery(document).keyup(function(event) {
+                if (event.keyCode == 27) {
+                    closePopup(settings.fadeOutTime);
+                }
+            });
+
+        });
+        function openDepartmentDialog(id, method) {
+            settings.source = '${pageContext.request.contextPath}/backend/user/addposition.html?posID=' + id + '&method=' + method;
+            openModalPopup(settings);
+        }
+
+        function openModalPopup(obj) {
+            modalPopup(obj.align, obj.top, obj.width, obj.padding, obj.disableColor, obj.disableOpacity, obj.backgroundColor, obj.borderColor, obj.borderWeight, obj.borderRadius, obj.fadeOutTime, obj.source, obj.loadingImage);
+        }
+
+
+        function saveDepartmentCategory(form) {
+            var parentId = jQuery("#parentId").val();
+            var departmentId = jQuery("#departmentId").val();
+            var departmentName = jQuery("#departmentName").val();
+            var oldParentId = jQuery("#oldParentId").val();
+            if (departmentName == null || departmentName == '') {
+                jQuery("#categoryName_help").css("display", "block");
+                return;
+            } else {
+                jQuery("#categoryName_help").css("display", "none");
+            }
+
+            form.submit();
+        }
+
+
+        function departmentDeleteConfirm(posId) {
+            jQuery("#department_delete_dialog").css("visibility", "visible");
+            jQuery("#department_delete_dialog").dialog({
+                        resizable: false,
+                        height:160,
+                        width:300,
+                        modal: true,
+                        buttons: {
+                            "确  认": function() {
+                                jQuery("#department_delete_dialog").css("visibility", "hidden");
+                                jQuery("#department_delete_dialog").dialog("close");
+                                SystemDWRHandler.obtainDepartmentHasChildren(posId, function(result) {
+                                    if (result) {
+                                        jQuery("#department_delete_refuse").css("visibility", "visible");
+                                        jQuery("#department_delete_refuse").dialog({
+                                                    resizable: false,
+                                                    height:160,
+                                                    width:300,
+                                                    modal: true,
+                                                    buttons: {
+                                                        "取  消": function() {
+                                                            jQuery("#department_delete_refuse").css("visibility", "hidden");
+                                                            jQuery(this).dialog("close");
+                                                        }
+                                                    }
+                                                });
+                                    } else {
+                                        jQuery("#department_delete_refuse").dialog("close");
+                                        window.location.href = '${pageContext.request.contextPath}/backend/user/posdelete.html?posId=' + posId + '&method=delete';
+                                    }
+                                });
+
+                            },
+                            "取  消": function() {
+                                jQuery("#department_delete_dialog").css("visibility", "hidden");
+                                jQuery(this).dialog("close");
+                            }
+                        }
+                    });
+        }
+</script>
 
 </body>
 </html>
