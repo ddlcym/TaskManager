@@ -43,12 +43,9 @@
      <jsp:include page="/WEB-INF/jsp/backend/common/organization.jsp"/>
     <div id="maincontent">
         <div id="add">
-          <div class="widget-title" style="padding-top: 2px;">
-            <a href="javascript:void(0);" onclick="openDepartmentDialog('-1', 'add');">
-             &nbsp;&nbsp;添加部门
-            </a>
-          <div class="widget-content nopadding">
-
+            <div class="mybutton">
+                <a id="button" href="${pageContext.request.contextPath}/backend/user/departmentform.html?departmentId=-1&method=add" class="button button-flat-primary">添加部门</a>
+            </div>
             <table class="table table-bordered position-tab">
                 <thead >
                 <tr>

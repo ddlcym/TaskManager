@@ -220,3 +220,9 @@ function animateFade(lastTick, id, fadeOutTime) {
 	setTimeout("animateFade(" + currentTick + ",'" + id + "','" + fadeOutTime + "')", 33);
   
 }
+
+
+//YD add
+function returnOverview(url){
+    window.open(url,"_self")
+}

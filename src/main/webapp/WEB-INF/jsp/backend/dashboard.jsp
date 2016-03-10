@@ -42,6 +42,10 @@
 <div id="usermaincontent">
      <jsp:include page="/WEB-INF/jsp/backend/common/organization.jsp"/>
 </div>
+ <div id="maincontent">
+        <div id="add">
+        </div>
+ </div>
 
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.changhong.user.service;
 
+import com.alibaba.fastjson.JSONArray;
 import com.changhong.user.web.facade.dto.DepartmentCategoryDTO;
 
 import java.util.List;
@@ -17,6 +18,8 @@ public interface DepartmentService {
 
     List<DepartmentCategoryDTO> obtainAllCategory();
 
+    List<DepartmentCategoryDTO> obtainBranchCategory();
+
     List<DepartmentCategoryDTO> obtainCategoryByLevel(String level);
 
     void saveOrUpdateDepartmentCategory(int departmentId, String categoryName,String principleUser, String level,int parentId);
@@ -32,6 +35,7 @@ public interface DepartmentService {
     void changeDepartmentDetails(DepartmentCategoryDTO departmentCategoryDTO);
 
     /***********************************************************************************************/
+    JSONArray obtainRecommendDepartments(String level);
 
 
 }

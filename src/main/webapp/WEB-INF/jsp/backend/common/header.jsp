@@ -48,7 +48,7 @@
         </security:authorize>
 
         <security:authorize ifAnyGranted="ROLE_ADMIN,ROLE_APP_INFO,ROLE_APP_STATUS,ROLE_ANONYMOUS">
-            <li class="submenu"><a href="javascript:void(0);"><i class="icon icon-th"></i> <span>经验分享</span></a>
+            <li class="submenu"><a href="javascript:void(0);"><i class="icon icon-share"></i> <span>经验分享</span></a>
             </li>
         </security:authorize>
 
@@ -58,7 +58,7 @@
         </security:authorize>
 
         <security:authorize ifAnyGranted="ROLE_ADMIN,ROLE_ANONYMOUS">
-            <li class="submenu"><a href="javascript:void(0);"><i class="icon icon-align-center"></i>
+            <li class="submenu"><a href="javascript:void(0);"><i class="icon icon-edit"></i>
                 <span>系统设置</span></a>
             </li>
         </security:authorize>

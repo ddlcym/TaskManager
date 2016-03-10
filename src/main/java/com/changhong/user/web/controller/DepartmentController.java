@@ -35,16 +35,19 @@ public class DepartmentController extends AbstractController {
         if ("add".equals(method) ||"edit".equals(method) ) {
             Map<String, Object> model = new HashMap<String, Object>();
             DepartmentCategoryDTO dto = null;
+            String level="";
             if(departmentId > 0){
                dto=  departmentService.obtainDepartmentCategoryById(departmentId);
+               level= dto.getLevelType().equals("LEVEL_SECOND")?"LEVEL_FIRST":"LEVEL_SECOND";
             }else{
                 dto = new DepartmentCategoryDTO();
+                level= "LEVEL_SECOND";
             }
-            List<DepartmentCategoryDTO> level_2 = departmentService.obtainCategoryByLevel("LEVEL_SECOND");
-            List<DepartmentCategoryDTO> level_1 = departmentService.obtainCategoryByLevel("LEVEL_FIRST");
+
+
+            List<DepartmentCategoryDTO> parentDepartment = departmentService.obtainCategoryByLevel(level);
             model.put("department", dto);
-            model.put("level_2", level_2);
-            model.put("level_1", level_1);
+            model.put("parentDepartment", parentDepartment);
             model.put("fileRequestHost", fileRequestHost);
             return new ModelAndView("backend/user/departmentform", model);
         }else if ("save".equals(method)) {
