@@ -95,7 +95,7 @@
                         <label class="control-label">上级部门： </label>
 
                         <div class="controls">
-                            <select id="parentDepartment" name="parentDepartment" value="department.parentId">
+                            <select id="parentId" name="parentId" value="department.parentId">
                                <c:forEach items="${parentDepartment}" var="parent">
                                   <option value=${parent.id}> ${parent.name} </option>
                                </c:forEach>
@@ -117,7 +117,7 @@
      }
 
      function setParentDepartment(level){
-        var contentContainer = jQuery("#parentDepartment");
+        var contentContainer = jQuery("#parentId");
         contentContainer.html("");
         SystemDWRHandler.obtainRecommendDepartments(level, function(result) {
             var statisticData = JSON.parse(result);

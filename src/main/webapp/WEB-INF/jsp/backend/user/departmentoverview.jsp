@@ -44,7 +44,7 @@
     <div id="maincontent">
         <div id="add">
             <div class="mybutton">
-                <a id="button" href="${pageContext.request.contextPath}/backend/user/departmentform.html?departmentId=-1&method=add" class="button button-flat-primary">添加部门</a>
+                <a id="button" href="javascript:void(0);" onclick="openDepartmentDialog('${department.id}', 'add');" class="button button-flat-primary">添加部门</a>
             </div>
             <table class="table table-bordered position-tab">
                 <thead >
@@ -135,9 +135,8 @@
 
 	});
 	function openDepartmentDialog(id, method) {
-		settings.source = '${pageContext.request.contextPath}/backend/user/departmentform.html?departmentId=' + id + '&method=' + method;
-		openModalPopup(settings);
-	}
+        window.open('${pageContext.request.contextPath}/backend/user/departmentform.html?departmentId=' + id + '&method=' + method,"_self")
+    }
 
     function openModalPopup(obj) {
 		modalPopup(obj.align, obj.top, obj.width, obj.padding, obj.disableColor, obj.disableOpacity, obj.backgroundColor, obj.borderColor, obj.borderWeight, obj.borderRadius, obj.fadeOutTime, obj.source, obj.loadingImage);
