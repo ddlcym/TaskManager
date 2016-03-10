@@ -48,11 +48,13 @@ public class UserDaoImplTest extends TestCase {
 
             List<DepartmentCategory> departments = hibernateTemplate.find("from "+DepartmentCategory.class.getName() +" dpt where dpt.name = ?", "互联网小组");
             if(!departments.isEmpty()){
+
                 DepartmentCategory myDepartment= departments.get(0);
                 User newUser = new User();
                 newUser.setDepartment(myDepartment);
                 newUser.grantRole("ROLE_DEVELOPER");
                 hibernateTemplate.saveOrUpdate(newUser);
+
             }
 
     }
