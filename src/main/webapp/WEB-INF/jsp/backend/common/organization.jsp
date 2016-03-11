@@ -7,7 +7,7 @@
     <ul>
         <li class="line200"><a href="${pageContext.request.contextPath}/backend/user/departmentoverview.html" title="部门管理">部门管理</a>
         </li>
-        <li class="line200"><a href="${pageContext.request.contextPath}/backend/user/usermanager.html" title="人员管理">人员管理</a>
+        <li class="line200"><a href="${pageContext.request.contextPath}/backend/user/useroverview.html" title="人员管理">人员管理</a>
         </li>
         <li class="line200"><a href="${pageContext.request.contextPath}/backend/user/userpositionlist.html" title="职位列表">职位列表</a>
         </li>
