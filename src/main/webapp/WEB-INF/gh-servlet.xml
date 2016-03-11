@@ -106,7 +106,7 @@
         <property name="userService" ref="userService"/>
     </bean>
 
-    <bean id="addpositioncontroller" class="com.changhong.user.web.controller.positioncontroller">
+    <bean id="addpositioncontroller" class="com.changhong.user.web.controller.PositionController">
         <property name="positionService" ref="positionService"/>
     </bean>
 

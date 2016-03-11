@@ -24,7 +24,7 @@ import java.util.Map;
  * Time: 下午2:48
  * To change this template use File | Settings | File Templates.
  */
-public class addpositioncontroller extends SimpleFormController {
+public class AddPositionController extends SimpleFormController {
 //    @Override
 //    protected ModelAndView handleRequestInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
 //        Map<String, Object> model = new HashMap<String, Object>();
@@ -34,7 +34,7 @@ public class addpositioncontroller extends SimpleFormController {
     @Autowired
     private PositionService positionService;
 
-    public addpositioncontroller() {
+    public AddPositionController() {
         setCommandClass(PositionDTO.class);
         setCommandName("position");
         setFormView("backend/user/addposition");
