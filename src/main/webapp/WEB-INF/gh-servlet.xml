@@ -86,14 +86,14 @@
         <property name="fileRequestHost" value="${application.file.request.path}"/>
     </bean>
 
-    <bean id="userorgstructureController" class="com.changhong.user.web.controller.userorgstructureController">
+    <bean id="userorgstructureController" class="com.changhong.user.web.controller.UserOrgstructureController">
     </bean>
 
-    <bean id="userpositionController" class="com.changhong.user.web.controller.userpositionController">
+    <bean id="userpositionController" class="com.changhong.user.web.controller.UserPositionController">
         <property name="positionService" ref="positionService"/>
     </bean>
 
-    <bean id="useroleController" class="com.changhong.user.web.controller.useroleController">
+    <bean id="useroleController" class="com.changhong.user.web.controller.UseRoleController">
     </bean>
     <bean id="userManagerController" class="com.changhong.user.web.controller.UserManagerController">
           <property name="userService" ref="userService"/>

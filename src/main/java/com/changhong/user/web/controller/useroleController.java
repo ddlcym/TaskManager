@@ -15,7 +15,7 @@ import java.util.Map;
  * Time: 下午5:30
  * To change this template use File | Settings | File Templates.
  */
-public class useroleController extends AbstractController{
+public class UseRoleController extends AbstractController{
     @Override
     protected ModelAndView handleRequestInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
         Map<String, Object> model = new HashMap<String, Object>();

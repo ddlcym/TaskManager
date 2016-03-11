@@ -20,7 +20,7 @@ import java.util.Map;
  * Time: 下午5:28
  * To change this template use File | Settings | File Templates.
  */
-public class userpositionController extends AbstractController {
+public class UserPositionController extends AbstractController {
 
     @Autowired
     private PositionService positionService;
