@@ -97,7 +97,6 @@
     </bean>
     <bean id="userManagerController" class="com.changhong.user.web.controller.UserManagerController">
           <property name="userService" ref="userService"/>
-          <property name="departmentService" ref="departmentService"/>
     </bean>
     <bean id="userAddController" class="com.changhong.user.web.controller.UserAddController">
         <property name="userService" ref="userService"/>
