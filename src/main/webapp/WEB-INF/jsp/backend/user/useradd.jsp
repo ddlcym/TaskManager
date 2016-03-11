@@ -40,7 +40,7 @@
     <jsp:include page="/WEB-INF/jsp/backend/common/organization.jsp"/>
     <div id="maincontent">
         <div id="add">
-            <spring-form:form commandName="user" class="form-horizontal" method="post" name="basic_validate" id="basic_validate" novalidate="novalidate">
+            <spring-form:form commandName="user" class="form-horizontal" method="post" name="basic_validate" id="basic_validate" novalidate="validate">
                 <div id="form-action">
                    <input type="button" value="返 回" class="button button-flat-primary" onclick="window.location.href='${pageContext.request.contextPath}/backend/user/useroverview.html'"/>
                                 &nbsp;&nbsp;
@@ -97,8 +97,16 @@
                 <div>
                     <label class="control-label">职位</label>
                     <div class="controls">
-                        <spring-form:input path="position" cssStyle="height: 30px;"/>&nbsp;
+                        <select name="position">
+                            <c:forEach items="${positions}" var="position">
+                                <option value="${position.name}">
+                                    ${position.name}
+                                </option>
+                            </c:forEach>
+
+                        </select>
                     </div>
+
                 </div>
                 <div>
                     <label class="control-label">Email</label>

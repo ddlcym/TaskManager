@@ -1,5 +1,7 @@
 package com.changhong.user.web.controller;
 
+import com.changhong.user.service.PositionService;
+import com.changhong.user.web.facade.dto.PositionDTO;
 import org.springframework.util.StringUtils;
 import com.changhong.user.domain.DepartmentCategory;
 import com.changhong.user.service.DepartmentService;
@@ -28,6 +30,7 @@ public class UserAddController extends SimpleFormController{
 
     UserService userService;
     DepartmentService departmentService;
+    PositionService positionService;
 
     //构造方法:1--设置command,2--指明表单页面
     public UserAddController() {
@@ -47,9 +50,11 @@ public class UserAddController extends SimpleFormController{
         request.setAttribute("level_twos", level_twos);
         request.setAttribute("level_threes", level_threes);
 
-        int userId = ServletRequestUtils.getIntParameter(request, "userId", -1);
+        List<PositionDTO> positions = positionService.obtainAllPositions();
 
-        System.out.print(userId);
+        request.setAttribute("positions",positions);
+
+        int userId = ServletRequestUtils.getIntParameter(request, "userId", -1);
 
         //编辑用户使用
         if(userId > 0){
@@ -96,8 +101,13 @@ public class UserAddController extends SimpleFormController{
         //绑定的command对象转化为UserDto
          UserDTO userDTO = (UserDTO)command;
 
+        //不能直接绑定到spring-form上的,要单独添加处理
         int departmentCategoryId = ServletRequestUtils.getIntParameter(request,"selectDepartmentCategoryId",-1);
         userDTO.setDepartmentId(departmentCategoryId);
+
+        String userPosition = ServletRequestUtils.getStringParameter(request,"position","");
+        userDTO.setPosition(userPosition);
+
         //清楚roles容器中的旧数据，防止数据重叠
         if(roles != null && roles.length > 0){
             if(userDTO.getRoles() != null){
@@ -120,5 +130,9 @@ public class UserAddController extends SimpleFormController{
     }
     public void setDepartmentService(DepartmentService departmentService) {
         this.departmentService = departmentService;
+    }
+
+    public void setPositionService(PositionService positionService) {
+        this.positionService = positionService;
     }
 }
