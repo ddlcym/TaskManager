@@ -4,6 +4,7 @@ import com.changhong.user.service.PositionService;
 import com.changhong.user.web.facade.dto.PositionDTO;
 import com.changhong.user.web.facade.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
@@ -56,7 +57,10 @@ public class PositionController extends SimpleFormController {
 
     @Override
     protected void onBindAndValidate(HttpServletRequest request, Object command, BindException errors) throws Exception {
-        super.onBindAndValidate(request, command, errors);    //To change body of overridden methods use File | Settings | File Templates.
+        String name = ServletRequestUtils.getStringParameter(request, "name", "");
+        if (!StringUtils.hasText(name)) {
+            errors.rejectValue("name", "position.name.empty");
+        }
     }
 
     @Override
@@ -64,7 +68,7 @@ public class PositionController extends SimpleFormController {
         String method = ServletRequestUtils.getStringParameter(request, "method");
         int posID = ServletRequestUtils.getIntParameter(request, "posID", -1);
 
-        if ("add".equals(method)||"update".equals(method)) {
+        if ("add".equals(method) || "update".equals(method)) {
             System.out.println("add position");
 //            PositionDTO posDTO=null;
 //             Map<String, Object> model = new HashMap<String, Object>();
@@ -78,7 +82,7 @@ public class PositionController extends SimpleFormController {
         } else if ("delete".equals(method)) {
             System.out.println("delete position");
             positionService.deleteById(posID);
-            return  new ModelAndView(new RedirectView("userpositionlist.html")) ;
+            return new ModelAndView(new RedirectView("userpositionlist.html"));
         }
         PositionDTO positionDTO = (PositionDTO) command;
 

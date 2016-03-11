@@ -50,7 +50,7 @@
                 <input type="submit" value="保 存" class="button button-flat-primary">
             </div>
             <div class="btndiv">
-                <label class="name-label">名称:</label>
+                <label class="name-label"><span style="color: red;">*</span>名称:</label>
 
                 <div style="padding-bottom: 10px">
                     <spring-form:input path="name" maxlength="30" cssStyle="height: 30px;"/>&nbsp;

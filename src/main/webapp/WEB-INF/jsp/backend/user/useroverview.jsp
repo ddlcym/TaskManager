@@ -42,38 +42,41 @@
     <jsp:include page="/WEB-INF/jsp/backend/common/organization.jsp"/>
     <div id="maincontent">
         <div id="add">
-            <input type="button" class="button button-flat-primary" value="添加用户" onclick="window.location.href = '${pageContext.request.contextPath}/backend/user/useradd.html'" />
+            <input type="button" class="button button-flat-primary" value="添加用户"
+                   onclick="window.location.href = '${pageContext.request.contextPath}/backend/user/useradd.html'"/>
             <table class="table table-bordered position-tab">
                 <thead>
-                    <tr>
-                        <th>姓名</th>
-                        <th>员工编号</th>
-                        <th>账号</th>
-                        <th>密码</th>
-                        <th>所属部门</th>
-                        <th>职位</th>
-                        <th>Email</th>
-                        <th>地址</th>
-                        <th>操作</th>
-                    </tr>
+                <tr>
+                    <th>姓名</th>
+                    <th>员工编号</th>
+                    <th>账号</th>
+                    <th>密码</th>
+                    <th>所属部门</th>
+                    <th>职位</th>
+                    <th>Email</th>
+                    <th>地址</th>
+                    <th>操作</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${users}" var="user">
-                        <tr>
-                            <td>${user.username}</td>
-                            <td>${user.employeeId}</td>
-                            <td>${user.account}</td>
-                            <td>${user.password}</td>
-                            <td>${user.departmentName}</td>
-                            <td>${user.position}</td>
-                            <td>${user.email}</td>
-                            <td>${user.address}</td>
-                            <td class="actions">
-                                <a href="${pageContext.request.contextPath}/backend/user/useradd.html?userId=${user.id}"><i class="icon-pencil icon-white"></i></a>
-                                <a title="" href="javascript:void(0);" onclick="userDeleteConfirm('${user.id}');"><i class="icon-remove icon-white"></i></a>
-                            </td>
-                        </tr>
-                    </c:forEach>
+                <c:forEach items="${users}" var="user">
+                    <tr>
+                        <td>${user.username}</td>
+                        <td>${user.employeeId}</td>
+                        <td>${user.account}</td>
+                        <td>${user.password}</td>
+                        <td>${user.departmentName}</td>
+                        <td>${user.position}</td>
+                        <td>${user.email}</td>
+                        <td>${user.address}</td>
+                        <td class="actions">
+                            <a href="${pageContext.request.contextPath}/backend/user/useradd.html?userId=${user.id}"><i
+                                    class="icon-pencil icon-white"></i></a>
+                            <a title="" href="javascript:void(0);" onclick="userDeleteConfirm('${user.id}');"><i
+                                    class="icon-remove icon-white"></i></a>
+                        </td>
+                    </tr>
+                </c:forEach>
 
                 </tbody>
 
@@ -96,27 +99,26 @@
     function userDeleteConfirm(userId) {
         jQuery("#user_delete_dialog").css("visibility", "visible");
         jQuery("#user_delete_dialog").dialog({
-                resizable: false,     //对话框尺寸大小不变
-                height:160,
-                width:300,
-                modal: true,
-                buttons: {
-                    "确  认": function() {
-                        jQuery("#user_delete_dialog").css("visibility", "hidden");
-                        jQuery(this).dialog("close");
-                        window.location.href = '${pageContext.request.contextPath}/backend/user/userdelete.html?userId=' + userId;
-                    },
-                    "取  消": function() {
-                        jQuery("#user_delete_dialog").css("visibility", "hidden");
-                        jQuery(this).dialog("close");
+                    resizable: false,     //对话框尺寸大小不变
+                    height:160,
+                    width:300,
+                    modal: true,
+                    buttons: {
+                        "确  认": function() {
+                            jQuery("#user_delete_dialog").css("visibility", "hidden");
+                            jQuery(this).dialog("close");
+                            window.location.href = '${pageContext.request.contextPath}/backend/user/userdelete.html?userId=' + userId;
+                        },
+                        "取  消": function() {
+                            jQuery("#user_delete_dialog").css("visibility", "hidden");
+                            jQuery(this).dialog("close");
+                        }
                     }
-                }
-            });
+                });
     }
 
 
 </script>
-
 
 
 </body>
