@@ -71,7 +71,8 @@ public class UserDTO implements Serializable {
     }
 
     public boolean getHasRoleSoftwarePM() {
-        return hasSpecicalRole("ROLE_SoftWARE_PM");
+        return hasSpecicalRole("ROLE_SOFTWARE_PM");
+
     }
     public boolean getHasRoleHardwarePM() {
         return hasSpecicalRole("ROLE_HARDWARE_PM");

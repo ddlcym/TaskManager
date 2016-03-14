@@ -129,7 +129,7 @@
                                                                 />&nbsp;&nbsp;系统管理
                             </label>
 
-                            <label><input type="checkbox" name="roleUser" value="ROLE_DEPARTMNET_DIRECTOR"
+                            <label><input type="checkbox" name="roleUser" value="ROLE_DEPARTMENT_DIRECTOR"
                                     <c:if  test="${user.hasRoleDepartmentDirector}"> checked</c:if>
                                                                 />&nbsp;&nbsp;部长</label>
 

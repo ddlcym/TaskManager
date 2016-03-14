@@ -7,7 +7,7 @@ package com.changhong.user.domain;
  */
 public enum RoleType {
     ROLE_ADMIN,//系统管理员
-    ROLE_DEPARTMNET_DIRECTOR,//部长
+    ROLE_DEPARTMENT_DIRECTOR,//部长
     ROLE_GROUP_LEADER,//组长
     ROLE_PRODUCT_MANAGER,//项目经理
     ROLE_SOFTWARE_PM,//软件负责人

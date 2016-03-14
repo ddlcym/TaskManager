@@ -19,7 +19,6 @@ public class User extends EntityBase implements UserDetails {
     private String username;//用户真实姓名
     private String account;//登录账号
     private String password;//登录密码
-//    private  int   employeeId;//员工编号
     private String employeeId;//员工编号
     private String email;    //邮件
     private String address;//联系地址
@@ -32,7 +31,6 @@ public class User extends EntityBase implements UserDetails {
     public User() {
     }
 
-//    public User(String username,String account,String password,int employeeId,String email,String address,String position) {
     public User(String username,String account,String password,String employeeId,String email,String address,String position) {
         this.username = username;
         this.account = account;
@@ -71,13 +69,6 @@ public class User extends EntityBase implements UserDetails {
         this.account = account;
     }
 
-//    public int getEmployeeId() {
-//        return employeeId;
-//    }
-//
-//    public void setEmployeeId(int employeeId) {
-//        this.employeeId = employeeId;
-//    }
     public String getEmployeeId() {
         return employeeId;
     }
