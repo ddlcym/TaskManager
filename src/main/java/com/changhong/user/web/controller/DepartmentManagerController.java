@@ -7,6 +7,7 @@ import org.springframework.web.servlet.mvc.AbstractController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,14 +31,20 @@ public class DepartmentManagerController extends AbstractController {
     protected ModelAndView handleRequestInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
 
         Map<String, Object> model = new HashMap<String, Object>();
-        List<DepartmentCategoryDTO> departments = departmentService.obtainAllCategory();
+        List<DepartmentCategoryDTO> departments = departmentService.obtainCategoryByLevel("LEVEL_FIRST");
+        List<DepartmentCategoryDTO> list = new ArrayList<DepartmentCategoryDTO>();
 
-//        if(null !=departments){
-//            for(DepartmentCategoryDTO department:departments){
-//                 System.out.print("department is "+department.getName());
-//            }
-//        }
-        model.put("departments", departments);
+        if(null !=departments){
+            for(DepartmentCategoryDTO department:departments){
+                  department.setIsLoad(true);
+                  list.add(department);
+                  List<DepartmentCategoryDTO> children=departmentService.obtainDepartmentWithChildren(department.getId());
+                  if(null != children){
+                      list.addAll(children);
+                  }
+            }
+        }
+        model.put("departments", list);
         model.put("fileRequestHost", fileRequestHost);
         return new ModelAndView("backend/user/departmentoverview", model);
 

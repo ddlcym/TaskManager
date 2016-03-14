@@ -46,47 +46,47 @@
             <div class="mybutton">
                 <a id="button" href="javascript:void(0);" onclick="openDepartmentDialog('${department.id}', 'add');" class="button button-flat-primary">添加部门</a>
             </div>
-            <table class="table table-bordered position-tab">
+            <table id="table_department" class="table table-bordered position-tab">
                 <thead >
                 <tr>
                     <th class="no" >序号</th>
-                    <th class="orgname" >组织名称</th>
-                    <th class="orgleader" >组织负责人</th>
-                    <th class="level" >级别</th>
-                    <th class="parent" >上级部门</th>
-                    <th class="detail" >详情</th>
-                    <th class="detail" >编辑</th>
+                    <th class="orgname" >名称</th>
+                    <th class="orgleader" >负责人</th>
+                    <th class="edit" ></th>
+                    <th class="delete" ></th>
+
                 </tr>
                 </thead>
 
-                 <tbody>
+                <tbody id="table table-list">
                 <c:forEach items="${departments}" var="department" varStatus="status">
-                    <tr class="gradeX">
-                      <td>${status.count}</td>
-                      <td>${department.name}</td>
-                      <td>${department.principleUser}</td>
+                    <tr id="${department.id}" parentId="${department.parentID}" isDepart="${department.isBranchNode}" isLoad="${department.isLoad}">
+                       <td></td>
                       <td>
-                        <c:if test="${department.levelType == 'LEVEL_FIRST'}">
-                        公司(一级)
-                        </c:if>
-                        <c:if test="${department.levelType == 'LEVEL_SECOND'}">
-                        部门(二级)
-                        </c:if>
-                        <c:if test="${department.levelType == 'LEVEL_THIRD'}">
-                        小组(三级)
-                        </c:if>
-                      </td>
-                      <td>${department.parentID}</td>
-                      <td>更多</td>
-
+                        <c:choose>
+                       <c:when test="${department.levelType=='LEVEL_FIRST'}">
+                           <a href="javascript:void(0);" onclick="toggleDepart('${department.id}');"><span class="icon"><i id="icon_${department.id}" class="icon-minus"></i></span></a>
+                       </c:when>
+                       <c:when test="${department.levelType=='LEVEL_SECOND'}">
+                              &nbsp; &nbsp; &nbsp;<a href="javascript:void(0);" onclick="toggleDepart('${department.id}');"><span class="icon"><i id="icon_${department.id}" class="icon-plus"></i></span></a>
+                       </c:when>
+                       <c:otherwise>
+                              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                       </c:otherwise>
+                       </c:choose>
+                          "${department.name}"
+                       </td>
+                      <td>${department.principleUser}</td>
                       <td class="more-details">
                         <a href="javascript:void(0);" onclick="openDepartmentDialog('${department.id}', 'edit');" class="btn btn-primary btn-mini">修改</a>
+                      </td>
+                      <td class="more-details">
                         <a href="javascript:void(0);" onclick="departmentDeleteConfirm('${department.id}');"  class="btn btn-primary btn-mini">删除</a>
-
                       </td>
                     </tr>
                 </c:forEach>
               </tbody>
+
             </table>
         </div>
 
@@ -137,12 +137,6 @@
 	function openDepartmentDialog(id, method) {
         window.open('${pageContext.request.contextPath}/backend/user/departmentform.html?departmentId=' + id + '&method=' + method,"_self")
     }
-
-    function openModalPopup(obj) {
-		modalPopup(obj.align, obj.top, obj.width, obj.padding, obj.disableColor, obj.disableOpacity, obj.backgroundColor, obj.borderColor, obj.borderWeight, obj.borderRadius, obj.fadeOutTime, obj.source, obj.loadingImage);
-	}
-
-
 
      function saveDepartmentCategory(form) {
         var parentId = jQuery("#parentId").val();
@@ -200,6 +194,72 @@
                 }
             });
     }
+
+
+      function toggleDepart(tr){
+        var branchNode = jQuery("#"+tr);
+        var icon=jQuery("#icon_"+tr);
+        if(icon.attr("class") == "icon-minus"){
+            icon.attr("class","icon-plus");
+            hideSubDepartment(tr);
+        }else{
+            icon.attr("class","icon-minus");
+            showSubDepartment(branchNode);
+        }
+     }
+         function showSubDepartment(branchNode){
+             var id= branchNode.attr("id");
+            //获取ID值
+            if("true" == branchNode.attr("isLoad")){
+                    refresh(id);
+            }else{
+                SystemDWRHandler.obtainSubDepartments(id, function(result) {
+                var statisticData = JSON.parse(result);
+                var html = "";
+                for(var i=0; i<statisticData.length; i++) {
+                    var departmentValues = statisticData[i];
+                    html = "<tr id='" + departmentValues.departmentId + "' parentId='" + departmentValues.parentID + "' isDepart='" + departmentValues.isDepart +"' isLoad='"+departmentValues.isLoad+"'>";
+                    html += "<td>" + "</td>";
+                    if(departmentValues.levelType=="LEVEL_FIRST"){
+                        html += "<td><a href='javascript:void(0);' onclick='toggleDepart('"+departmentValues.departmentId+"');'><span class='icon'><i class='icon-minus'></i></span></a>"+departmentValues.departmentName+"</td>";
+                    }else if(departmentValues.levelType=="LEVEL_SECOND"){
+                        html += "<td>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' onclick='toggleDepart('"+departmentValues.departmentId+"');'><span class='icon'><i class='icon-minus'></i></span></a>"+departmentValues.departmentName+"</td>";
+                    }else{
+                        html += "<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+departmentValues.departmentName+"</td>";
+                    }
+                    html += "<td>"+departmentValues.principleUser+"</td>";
+                    html += "<td class='more-details'>"+"<a href='javascript:void(0);' onclick='openDepartmentDialog('"+departmentValues.departmentId+"', 'edit');' class='btn btn-primary btn-mini'>修改</a></td>";
+                    html += "<td class='more-details'>"+"<a href='javascript:void(0);' onclick='departmentDeleteConfirm('"+departmentValues.departmentId+"', 'edit');' class='btn btn-primary btn-mini'>删除</a></td>";
+                    html += "</tr>";
+                    //获取要插入行的表格
+                   branchNode.after(html)
+            }
+            branchNode.attr("isLoad","true");
+        });
+
+            }
+
+
+         }
+
+
+      function hideSubDepartment(id){
+          $("#table_department tr").each(function(){
+                var tem =$(this).attr("parentId");
+                if(tem== id ){
+                   $(this).hide();
+                }
+            });
+     }
+
+     function refresh(id){
+          $("#table_department tr").each(function(){
+                var tem =$(this).attr("parentId");
+                if(tem== id ){
+                   $(this).show();
+                }
+            });
+     }
 
 </script>
 

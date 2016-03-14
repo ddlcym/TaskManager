@@ -38,7 +38,11 @@ public class DepartmentController extends AbstractController {
             String level="";
             if(departmentId > 0){
                dto=  departmentService.obtainDepartmentCategoryById(departmentId);
-               level= dto.getLevelType().equals("LEVEL_SECOND")?"LEVEL_FIRST":"LEVEL_SECOND";
+               level= dto.getLevelType();
+               if(level.equals("LEVEL_FIRST"))level="";
+               else if(level.equals("LEVEL_SECOND"))level="LEVEL_FIRST";
+               else level="LEVEL_SECOND";
+
             }else{
                 dto = new DepartmentCategoryDTO();
                 level= "LEVEL_SECOND";

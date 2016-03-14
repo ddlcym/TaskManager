@@ -11,12 +11,14 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class DepartmentCategoryDTO implements Serializable {
+
     private int id = -1;
     private String name;
     private String principleUser;//部门领导
     private String levelType;//部门级别
     private int parentID;//父部门ID;
     private List<String> children;//子部门列表
+    private boolean isLoad=false;
 
     public DepartmentCategoryDTO() {
         }
@@ -77,4 +79,20 @@ public class DepartmentCategoryDTO implements Serializable {
     public void setChildren(List<String> children) {
         this.children = children;
     }
+
+    public boolean getIsLoad() {
+        return isLoad;
+    }
+
+    public void setIsLoad(boolean isLoad) {
+        this.isLoad = isLoad;
+    }
+
+    public boolean getIsBranchNode() {
+        if(null != children && children.size()>0 ){
+            return true;
+        }
+        return false;
+    }
+
 }

@@ -36,111 +36,120 @@
     <jsp:include page="/WEB-INF/jsp/backend/common/organization.jsp"/>
     <div id="maincontent">
 
-            <div class="widget-content nopadding">
-                <form action="${pageContext.request.contextPath}/backend/user/departmentform.html" method="post"
-                      class="form-horizontal" enctype="multipart/form-data">
-                    <input type="hidden" id="departmentId" name="departmentId" value="${department.id}"/>
-                    <input type="hidden" id="oldParentId" name="oldParentId" value="${department.parentID}"/>
-                    <input type="hidden" name="method" value="save"/>
+        <div class="widget-content nopadding">
+            <form action="${pageContext.request.contextPath}/backend/user/departmentform.html" method="post"
+                  class="form-horizontal" enctype="multipart/form-data">
+                <input type="hidden" id="departmentId" name="departmentId" value="${department.id}"/>
+                <input type="hidden" id="oldParentId" name="oldParentId" value="${department.parentID}"/>
+                <input type="hidden" name="method" value="save"/>
 
-                    <div class="control-button">
+                <div class="control-button">
 
-                        <button type="button" class="btn button-flat-primary" onclick="saveDepartmentCategory(this.form);">保 存
-                        </button>
-                           &nbsp;
-                        <button type="button" class="btn button-flat-primary" onclick="returnOverview('${pageContext.request.contextPath}/backend/user/departmentoverview.html');">返回
-                        </button>
+                    <button type="button" class="btn button-flat-primary" onclick="saveDepartmentCategory(this.form);">保
+                        存
+                    </button>
+                    &nbsp;
+                    <button type="button" class="btn button-flat-primary"
+                            onclick="returnOverview('${pageContext.request.contextPath}/backend/user/departmentoverview.html');">
+                        返回
+                    </button>
+                </div>
+
+
+                <div class="control-group">
+                    <label class="control-label">部门名称:</label>
+
+                    <div class="controls">
+                        <input type="text" id="departmentName" name="departmentName" class="span20"
+                               value="${department.name}"/>
+                        <span id="departmentName_help" class="help-block" style="display: none;">组织类别不能为空</span>
                     </div>
+                </div>
 
+                <div class="control-group">
+                    <label class="control-label">部门负责人：</label>
 
-                    <div class="control-group">
-                        <label class="control-label">部门名称:</label>
-                        <div class="controls">
-                            <input type="text" id="departmentName" name="departmentName" class="span20"
-                                   value="${department.name}"/>
-                            <span id="departmentName_help" class="help-block" style="display: none;">组织类别不能为空</span>
-                        </div>
+                    <div class="controls">
+                        <input type="text" id="principleUser" name="principleUser" class="span20"
+                               value="${department.principleUser}"/>
+                        <span id="principleUser_help" class="help-block" style="display: none;">组织负责人不能为空</span>
                     </div>
+                </div>
 
-                    <div class="control-group">
-                        <label class="control-label">部门负责人：</label>
+                <div class="control-group">
+                    <label class="control-label">级&nbsp;&nbsp;&nbsp;&nbsp;别：</label>
 
-                        <div class="controls">
-                            <input type="text" id="principleUser" name="principleUser" class="span20"
-                                   value="${department.principleUser}"/>
-                            <span id="principleUser_help" class="help-block" style="display: none;">组织负责人不能为空</span>
-                        </div>
+                    <div class="controls">
+                        <select id="levelType" name="levelType" value="department.levelType"
+                                onChange="setDepartmentLevel();">
+                            <option value="LEVEL_THIRD"
+                                    <c:if test="${department.levelType=='LEVEL_THIRD'}">selected="true"</c:if>>小组
+                            </option>
+                            <option value="LEVEL_SECOND"
+                                    <c:if test="${department.levelType=='LEVEL_SECOND'}">selected="true"</c:if>>部门
+                            </option>
+                            <option value="LEVEL_FIRST"
+                                    <c:if test="${department.levelType=='LEVEL_FIRST'}">selected="true"</c:if>>公司
+                            </option>
+
+                        </select>
                     </div>
+                </div>
 
-                    <div class="control-group">
-                        <label class="control-label">级&nbsp;&nbsp;&nbsp;&nbsp;别：</label>
+                <div class="control-group">
+                    <label class="control-label">上级部门： </label>
 
-                        <div class="controls">
-                            <select id="levelType" name="levelType" value="department.levelType"  onChange="setDepartmentLevel();">
-                                <option value="LEVEL_THIRD"
-                                        <c:if test="${department.levelType=='LEVEL_THIRD'}">selected="true"</c:if>>小组
-                                </option>
-                                 <option value="LEVEL_SECOND"
-                                        <c:if test="${department.levelType=='LEVEL_SECOND'}">selected="true"</c:if>>部门
-                                </option>
-                                <option value="LEVEL_FIRST"
-                                        <c:if test="${department.levelType=='LEVEL_FIRST'}">selected="true"</c:if>>公司
-                                </option>
-
-                            </select>
-                        </div>
+                    <div class="controls">
+                        <select id="parentId" name="parentId" value="department.parentId">
+                            <c:forEach items="${parentDepartment}" var="parent">
+                                <option value=${parent.id}> ${parent.name} </option>
+                            </c:forEach>
+                        </select>
                     </div>
-
-                    <div class="control-group">
-                        <label class="control-label">上级部门： </label>
-
-                        <div class="controls">
-                            <select id="parentId" name="parentId" value="department.parentId">
-                               <c:forEach items="${parentDepartment}" var="parent">
-                                  <option value=${parent.id}> ${parent.name} </option>
-                               </c:forEach>
-                            </select>
-                        </div>
-                    </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+</div>
 
 
- <script>
+<script>
 
-     function setDepartmentLevel(){
-         var departementLevel=jQuery("#levelType").val();    
-         setParentDepartment(departementLevel);
-     }
+    function setDepartmentLevel() {
+        var departementLevel = jQuery("#levelType").val();
+        setParentDepartment(departementLevel);
+    }
 
-     function setParentDepartment(level){
+    function setParentDepartment(level) {
         var contentContainer = jQuery("#parentId");
         contentContainer.html("");
-        SystemDWRHandler.obtainRecommendDepartments(level, function(result) {
-            var statisticData = JSON.parse(result);
-            var newContent = "";
-            for(var i=0; i<statisticData.length; i++) {
-                var departmentValues = statisticData[i];
-                newContent = newContent +"<option value="+departmentValues.departmentId+">"+departmentValues.departmentName+"</option>"
-            }
+        var newContent = "";
+
+        if (level == "LEVEL_FIRST") {
+            newContent = "<option value='-1'>无</option>"
             contentContainer.html(newContent);
-        });
+        } else {
+            SystemDWRHandler.obtainRecommendDepartments(level, function(result) {
+                var statisticData = JSON.parse(result);
+                for (var i = 0; i < statisticData.length; i++) {
+                    var departmentValues = statisticData[i];
+                    newContent = newContent + "<option value=" + departmentValues.departmentId + ">" + departmentValues.departmentName + "</option>"
+                }
+                contentContainer.html(newContent);
+            });
+        }
 
-     }
+
+    }
 
 
-
-
-
-     function saveDepartmentCategory(form) {
+    function saveDepartmentCategory(form) {
         var parentId = jQuery("#parentId").val();
         var departmentId = jQuery("#departmentId").val();
         var departmentName = jQuery("#departmentName").val();
         var oldParentId = jQuery("#oldParentId").val();
-        if(departmentName == null || departmentName == '') {
+        if (departmentName == null || departmentName == '') {
             jQuery("#categoryName_help").css("display", "block");
             return;
         } else {
@@ -148,8 +157,6 @@
         }
         form.submit();
     }
-
-
 
 
 </script>

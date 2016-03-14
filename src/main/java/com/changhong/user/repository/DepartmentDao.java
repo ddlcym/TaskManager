@@ -27,4 +27,6 @@ public interface DepartmentDao extends EntityObjectDao{
 
    /****************************************增、删、改、查************************************************/
    //继承者父类 EntityObjectDao
+
+
 }

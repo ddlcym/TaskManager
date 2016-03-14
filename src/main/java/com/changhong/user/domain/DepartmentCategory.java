@@ -1,7 +1,6 @@
 package com.changhong.user.domain;
 
 import com.changhong.common.domain.EntityBase;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

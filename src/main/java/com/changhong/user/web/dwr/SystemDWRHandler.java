@@ -18,4 +18,8 @@ public class SystemDWRHandler {
      public String obtainRecommendDepartments(String level) throws JSONException {
         return departmentService.obtainRecommendDepartments(level).toString();
     }
+
+     public String obtainSubDepartments(int departmentId) throws JSONException {
+        return departmentService.obtainSubDepartments(departmentId).toString();
+    }
 }

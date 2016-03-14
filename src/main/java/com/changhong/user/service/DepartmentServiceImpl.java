@@ -27,7 +27,6 @@ public class DepartmentServiceImpl implements DepartmentService{
     private DepartmentDao departmentDao;
 
     public List<DepartmentCategoryDTO> obtainAllCategory() {
-//        System.out.print("departmentDao is "+((null==departmentDao)?"null":"not null"));
         List<DepartmentCategory> departments = departmentDao.loadAllCategory();
         return DepartmentWebAssember.toDepartmentCategoryDTOList(departments);
     }
@@ -50,7 +49,15 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
 
     public List<DepartmentCategoryDTO> obtainCategoryByLevel(String level) {
-        List<DepartmentCategory> departments = departmentDao.loadDepartmentCategoryByLevel(level);
+        List<DepartmentCategory> departments=null;
+        if(null == level || level.equals("")){
+            DepartmentCategory department=new DepartmentCategory("无","无","LEVEL_FIRST");
+            department.setId(-1);
+            departments=new ArrayList<DepartmentCategory>();
+            departments.add(department);
+        }else{
+            departments = departmentDao.loadDepartmentCategoryByLevel(level);
+        }
         return DepartmentWebAssember.toDepartmentCategoryDTOList(departments);
     }
 
@@ -95,6 +102,17 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
 
     public void changeDepartmentDetails(DepartmentCategoryDTO departmentCategoryDTO) {
+
+    }
+
+    public List<DepartmentCategoryDTO> obtainDepartmentWithChildren(int departmentId) {
+        DepartmentCategory department = (DepartmentCategory)departmentDao.findById(departmentId,DepartmentCategory.class);
+        List<DepartmentCategoryDTO> list = new ArrayList<DepartmentCategoryDTO>();
+        List<DepartmentCategory>  children  =  department.getChildren();
+        for(DepartmentCategory dpt : children){
+            list.add(DepartmentWebAssember.toDepartmentCategoryDTO(dpt));
+        }
+        return list;
     }
 
     public JSONArray obtainRecommendDepartments(String level) {
@@ -112,6 +130,37 @@ public class DepartmentServiceImpl implements DepartmentService{
                 o.put("departmentName", dpt.getName());
                 o.put("principleUser", dpt.getPrincipleUser());
                 o.put("levelType", dpt.getLevelType());
+                array.add(o);
+            }
+        }
+        return array;
+    }
+
+    public JSONArray obtainSubDepartments(int departmentId) {
+
+        List<DepartmentCategory> list = new ArrayList<DepartmentCategory>();;
+        if (departmentId > 0) {
+            DepartmentCategory  department =(DepartmentCategory)departmentDao.findById(departmentId,DepartmentCategory.class);
+            List<DepartmentCategory> children= department.getChildren();
+            if(null != children){
+               list.addAll(children);
+            }
+        }
+        JSONArray array = new JSONArray();
+        if (list != null) {
+            for (DepartmentCategory dpt : list) {
+                JSONObject o = new JSONObject();
+                o.put("departmentId", dpt.getId());
+                o.put("departmentName", dpt.getName());
+                o.put("principleUser", dpt.getPrincipleUser());
+                o.put("levelType", dpt.getLevelType());
+                o.put("parentID", dpt.getParent().getId());
+                if( dpt.getLevelType().equals("LEVEL_THIRD")){
+                    o.put("isDepart", "false");
+                }else{
+                    o.put("isDepart", "true");
+                }
+                o.put("isLoad", "false");
                 array.add(o);
             }
         }

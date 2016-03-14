@@ -68,4 +68,6 @@ public class DepartmentDaoImpl extends HibernateEntityObjectDao implements Depar
         return childrenSize;
 
     }
+
+
 }

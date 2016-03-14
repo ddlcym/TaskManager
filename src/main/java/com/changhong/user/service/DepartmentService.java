@@ -34,8 +34,11 @@ public interface DepartmentService {
 
     void changeDepartmentDetails(DepartmentCategoryDTO departmentCategoryDTO);
 
+    List<DepartmentCategoryDTO> obtainDepartmentWithChildren(int departmentId);
+
     /***********************************************************************************************/
     JSONArray obtainRecommendDepartments(String level);
+    JSONArray obtainSubDepartments(int departmentId);
 
 
 }

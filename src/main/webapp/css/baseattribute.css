@@ -121,19 +121,19 @@ div#maincontent {
 
 .position-tab .name {
     left: 50px;
-    width: 180px;
+    width: 280px;
 }
 
-.position-tab .des {
+.position-tab .orgleader {
     left: 230px;
 }
 
-.position-tab .org {
+.position-tab .edit {
     left: 50px;
-    width: 180px;
+    width: 80px;
 }
 
-.position-tab .position {
+.position-tab .delete {
     left: 50px;
     width: 180px;
 }
