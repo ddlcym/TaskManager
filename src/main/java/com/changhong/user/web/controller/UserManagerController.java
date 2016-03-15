@@ -1,5 +1,6 @@
 package com.changhong.user.web.controller;
 
+import com.changhong.user.service.DepartmentService;
 import com.changhong.user.service.UserService;
 import com.changhong.user.web.facade.dto.UserDTO;
 import org.springframework.security.core.userdetails.User;
@@ -21,6 +22,7 @@ public class UserManagerController extends AbstractController{
 
 
     UserService userService;
+    DepartmentService departmentService;
 
     @Override
     protected ModelAndView handleRequestInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
@@ -34,4 +36,7 @@ public class UserManagerController extends AbstractController{
            this.userService = userService;
        }
 
+    public void setDepartmentService(DepartmentService departmentService) {
+        this.departmentService = departmentService;
+    }
 }

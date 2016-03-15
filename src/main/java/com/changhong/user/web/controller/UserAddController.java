@@ -43,15 +43,9 @@ public class UserAddController extends SimpleFormController{
     protected Object formBackingObject(HttpServletRequest request) throws Exception {
 
         List<DepartmentCategoryDTO> level_ones = departmentService.obtainCategoryByLevel("LEVEL_FIRST");
-        List<DepartmentCategoryDTO> level_twos = departmentService.obtainCategoryByLevel("LEVEL_SECOND");
-        List<DepartmentCategoryDTO> level_threes = departmentService.obtainCategoryByLevel("LEVEL_THIRD");
-
         request.setAttribute("level_ones", level_ones);
-        request.setAttribute("level_twos", level_twos);
-        request.setAttribute("level_threes", level_threes);
 
         List<PositionDTO> positions = positionService.obtainAllPositions();
-
         request.setAttribute("positions",positions);
 
         int userId = ServletRequestUtils.getIntParameter(request, "userId", -1);
@@ -59,7 +53,11 @@ public class UserAddController extends SimpleFormController{
         //编辑用户使用
         if(userId > 0){
 
-            return userService.obtainUserById(userId);
+            UserDTO user = userService.obtainUserById(userId);
+            DepartmentCategoryDTO departmentLevelTwo = departmentService.obtainDepartmentCategoryById(user.getDepartmentId());
+            DepartmentCategoryDTO departmentLevelOne = departmentService.obtainDepartmentCategoryById(departmentLevelTwo.getParentID());
+
+           return userService.obtainUserById(userId);
 
         }
 
@@ -102,8 +100,8 @@ public class UserAddController extends SimpleFormController{
          UserDTO userDTO = (UserDTO)command;
 
         //不能直接绑定到spring-form上的,要单独添加处理
-        int departmentCategoryId = ServletRequestUtils.getIntParameter(request,"selectDepartmentCategoryId",-1);
-        userDTO.setDepartmentId(departmentCategoryId);
+        int levelThreeId = ServletRequestUtils.getIntParameter(request,"levelThreeId",-1);
+        userDTO.setDepartmentId(levelThreeId);
 
         String userPosition = ServletRequestUtils.getStringParameter(request,"position","");
         userDTO.setPosition(userPosition);

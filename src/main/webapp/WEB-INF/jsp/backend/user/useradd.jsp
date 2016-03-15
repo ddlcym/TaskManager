@@ -77,22 +77,60 @@
                     </div>
                 </div>
 
+                <%--<div>--%>
+                    <%--<label class="control-label">所属部门</label>--%>
+                    <%--<div class="controls">--%>
+                        <%--<select name="selectDepartmentCategoryId" style="width: 320px">--%>
+                            <%--<c:forEach items="${level_ones}" var="level_one">--%>
+                                    <%--<c:forEach items="${level_twos}" var="level_two">--%>
+                                        <%--<c:forEach items="${level_threes}" var="level_three">--%>
+                                            <%--<option value="${level_three.id}">--%>
+                                                    <%--${level_one.name}-> ${level_two.name}-> ${level_three.name}--%>
+                                            <%--</option>--%>
+
+                                        <%--</c:forEach>--%>
+                                    <%--</c:forEach>--%>
+                            <%--</c:forEach>--%>
+                        <%--</select>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+
                 <div>
                     <label class="control-label">所属部门</label>
                     <div class="controls">
-                        <select name="selectDepartmentCategoryId" style="width: 320px">
-                            <c:forEach items="${level_ones}" var="level_one">
-                                    <c:forEach items="${level_twos}" var="level_two">
-                                        <c:forEach items="${level_threes}" var="level_three">
-                                            <option value="${level_three.id}">
-                                                    ${level_one.name}-> ${level_two.name}-> ${level_three.name}
-                                            </option>
+                        <select id="levelOneId" name="levelOneId" onclick="selectDepartmentLevelTwo()">
+                            <c:if test="${user.id < 0}">
+                                 <option value="-1">-请选择- </option>
+                                <c:forEach items="${level_ones}" var="level_one">
+                                    <option value="${level_one.id}">
+                                            ${level_one.name}
+                                    </option>
+                                </c:forEach>
+                            </c:if>
+                            <c:if test="${user.id > 0}">
+                                <option>
+                                    ${departmentLevelOne.name}
+                                </option>
+                            </c:if>
 
-                                        </c:forEach>
-                                    </c:forEach>
-                            </c:forEach>
                         </select>
+
+                        <select id="levelTwoId" name="levelTwoId" onclick="selectDepartmentLevelThree()">
+                            <option value="-2">-请选择- </option>
+                                <option value="${level_two.id}">
+                                        ${departmentLevelTwo.name}
+                                </option>
+                        </select>
+
+                        <select id="levelThreeId" name="levelThreeId">
+                            <option value="-3" selected="selected">-请选择- </option>
+                                <option value="${level_three.id}">
+                                    ${user.departmentName}
+                                </option>
+                        </select>
+
                     </div>
+
                 </div>
                 <div>
                     <label class="control-label">职位</label>
@@ -158,6 +196,69 @@
         </div>
     </div>
 </div>
+
+<%--------------------------------------------JavaScript部分----------------------------------------------------%>
+<script>
+
+    function selectDepartmentLevelTwo(){
+        var departmentLevelOneId = jQuery("#levelOneId").val();
+        var valInt= parseInt(departmentLevelOneId);
+        setLeveloneChildrenDepartment(departmentLevelOneId);
+    }
+
+    function setLeveloneChildrenDepartment(id){
+        var content = jQuery("#levelTwoId"); //获得二级部门子对象
+        content.html("");
+        var newContent = "";
+
+        if(id>0) {
+        SystemDWRHandler.obtainChildrenDepartmentsById(id,function(result){
+            var statisticData = JSON.parse(result);
+            for(var i=0; i<statisticData.length; i++) {
+                var department = statisticData[i];
+                newContent = newContent +"<option value="+department.id+">"+department.name+"</option>"
+            }
+            content.html(newContent);
+        });
+
+      }else{
+            newContent = "<option value='-2'>-请选择-</option>"
+            content.html(newContent);
+        }
+    }
+
+
+
+    function selectDepartmentLevelThree(){
+        var departmentLevelTwoId = jQuery("#levelTwoId").val();
+           setLevelTwoChildrenDepartment(departmentLevelTwoId);
+
+    }
+
+    function setLevelTwoChildrenDepartment(id){
+        var content = jQuery("#levelThreeId"); //获得三级部门子对象
+        content.html("");
+        if(id>0){
+          SystemDWRHandler.obtainChildrenDepartmentsById(id,function(result){
+            var statisticData = JSON.parse(result);
+            var newContent = "";
+            for(var i=0; i<statisticData.length; i++) {
+                var department = statisticData[i];
+                newContent = newContent +"<option value="+department.id+">"+department.name+"</option>"
+            }
+            content.html(newContent);
+        });
+        }else{
+            newContent = "<option value='-3'>-请选择-</option>"
+            content.html(newContent);
+        }
+
+    }
+
+
+
+
+</script>
 
 </body>
 </html>

@@ -27,6 +27,7 @@ public class DepartmentServiceImpl implements DepartmentService{
     private DepartmentDao departmentDao;
 
     public List<DepartmentCategoryDTO> obtainAllCategory() {
+//        System.out.print("departmentDao is "+((null==departmentDao)?"null":"not null"));
         List<DepartmentCategory> departments = departmentDao.loadAllCategory();
         return DepartmentWebAssember.toDepartmentCategoryDTOList(departments);
     }
@@ -48,6 +49,10 @@ public class DepartmentServiceImpl implements DepartmentService{
         return DepartmentWebAssember.toDepartmentCategoryDTOList(list);
     }
 
+//    public List<DepartmentCategoryDTO> obtainCategoryByLevel(String level) {
+//        List<DepartmentCategory> departments = departmentDao.loadDepartmentCategoryByLevel(level);
+//        return DepartmentWebAssember.toDepartmentCategoryDTOList(departments);
+//    }
     public List<DepartmentCategoryDTO> obtainCategoryByLevel(String level) {
         List<DepartmentCategory> departments=null;
         if(null == level || level.equals("")){
@@ -102,10 +107,9 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
 
     public void changeDepartmentDetails(DepartmentCategoryDTO departmentCategoryDTO) {
-
     }
 
-    public List<DepartmentCategoryDTO> obtainDepartmentWithChildren(int departmentId) {
+     public List<DepartmentCategoryDTO> obtainDepartmentWithChildren(int departmentId) {
         DepartmentCategory department = (DepartmentCategory)departmentDao.findById(departmentId,DepartmentCategory.class);
         List<DepartmentCategoryDTO> list = new ArrayList<DepartmentCategoryDTO>();
         List<DepartmentCategory>  children  =  department.getChildren();
@@ -136,35 +140,56 @@ public class DepartmentServiceImpl implements DepartmentService{
         return array;
     }
 
-    public JSONArray obtainSubDepartments(int departmentId) {
+    public JSONArray obtainChildrenDepartments(int departmentId){
+        List<DepartmentCategory> list = null;
+        if(departmentId > 0){
+            DepartmentCategory department = (DepartmentCategory)departmentDao.findById(departmentId,DepartmentCategory.class);  //获取该部门
+            list = department.getChildren();     //获得该部门的下一级部门
+        }
 
-        List<DepartmentCategory> list = new ArrayList<DepartmentCategory>();;
-        if (departmentId > 0) {
-            DepartmentCategory  department =(DepartmentCategory)departmentDao.findById(departmentId,DepartmentCategory.class);
-            List<DepartmentCategory> children= department.getChildren();
-            if(null != children){
-               list.addAll(children);
-            }
-        }
         JSONArray array = new JSONArray();
-        if (list != null) {
-            for (DepartmentCategory dpt : list) {
-                JSONObject o = new JSONObject();
-                o.put("departmentId", dpt.getId());
-                o.put("departmentName", dpt.getName());
-                o.put("principleUser", dpt.getPrincipleUser());
-                o.put("levelType", dpt.getLevelType());
-                o.put("parentID", dpt.getParent().getId());
-                if( dpt.getLevelType().equals("LEVEL_THIRD")){
-                    o.put("isDepart", "false");
-                }else{
-                    o.put("isDepart", "true");
-                }
-                o.put("isLoad", "false");
-                array.add(o);
-            }
+        if(list != null){
+           for (DepartmentCategory dpt : list){
+               JSONObject o = new JSONObject();
+               o.put("id",dpt.getId());
+               o.put("name",dpt.getName());
+               array.add(o);
+           }
         }
+
         return array;
     }
+
+    public JSONArray obtainSubDepartments(int departmentId) {
+
+           List<DepartmentCategory> list = new ArrayList<DepartmentCategory>();;
+           if (departmentId > 0) {
+               DepartmentCategory  department =(DepartmentCategory)departmentDao.findById(departmentId,DepartmentCategory.class);
+               List<DepartmentCategory> children= department.getChildren();
+               if(null != children){
+                  list.addAll(children);
+               }
+           }
+           JSONArray array = new JSONArray();
+           if (list != null) {
+               for (DepartmentCategory dpt : list) {
+                   JSONObject o = new JSONObject();
+                   o.put("departmentId", dpt.getId());
+                   o.put("departmentName", dpt.getName());
+                   o.put("principleUser", dpt.getPrincipleUser());
+                   o.put("levelType", dpt.getLevelType());
+                   o.put("parentID", dpt.getParent().getId());
+                   if( dpt.getLevelType().equals("LEVEL_THIRD")){
+                       o.put("isDepart", "false");
+                   }else{
+                       o.put("isDepart", "true");
+                   }
+                   o.put("isLoad", "false");
+                   array.add(o);
+               }
+           }
+           return array;
+       }
+
 
 }

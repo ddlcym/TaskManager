@@ -36,9 +36,11 @@ public interface DepartmentService {
 
     List<DepartmentCategoryDTO> obtainDepartmentWithChildren(int departmentId);
 
-    /***********************************************************************************************/
+    /******************************************JSON数据*****************************************************/
     JSONArray obtainRecommendDepartments(String level);
-    JSONArray obtainSubDepartments(int departmentId);
 
+    JSONArray obtainChildrenDepartments(int departmentId);
+
+    JSONArray obtainSubDepartments(int departmentId);
 
 }

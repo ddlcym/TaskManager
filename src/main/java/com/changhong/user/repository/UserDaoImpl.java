@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
+import java.security.PublicKey;
 import java.util.List;
 
 /**
@@ -27,6 +28,11 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
         StringBuilder builder = new StringBuilder();
         builder.append("from User");
         return getHibernateTemplate().find(builder.toString());
+    }
+
+    public List<User> loadUserBydepartmentId(int departmentId){
+         List<User> users = getHibernateTemplate().find("from User u where u.department.id = ? ", departmentId);
+         return users;
     }
 
     public List<User> loadUsers(String name, int startPosition, int pageSize) {

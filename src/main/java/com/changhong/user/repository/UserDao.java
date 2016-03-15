@@ -18,6 +18,8 @@ public interface UserDao extends EntityObjectDao {
 
     List<User> loadAllUser();
 
+    List<User> loadUserBydepartmentId(int departmentId);
+
     List<User> loadUsers(String name, int startPosition, int pageSize);
 
     int loadUserSize(String name);
