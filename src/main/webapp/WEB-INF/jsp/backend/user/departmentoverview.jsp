@@ -98,7 +98,6 @@
 
     </div>
 </div>
-</div>
 
 
 <div id="department_delete_dialog" title="确认对话框?" style="visibility: hidden;">
