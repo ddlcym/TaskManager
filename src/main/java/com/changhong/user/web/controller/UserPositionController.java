@@ -1,6 +1,5 @@
 package com.changhong.user.web.controller;
 
-import com.changhong.user.domain.Position;
 import com.changhong.user.service.PositionService;
 import com.changhong.user.web.facade.dto.PositionDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,9 @@ public class UserPositionController extends AbstractController {
     protected ModelAndView handleRequestInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
         Map<String, Object> model = new HashMap<String, Object>();
         List<PositionDTO> posDTOList=positionService.obtainAllPositions();
-        model.put("posDTOList", posDTOList);
+        if(null != posDTOList){
+            model.put("posDTOList", posDTOList);
+        }
         return new ModelAndView("backend/user/userpositionlist", model);
     }
 

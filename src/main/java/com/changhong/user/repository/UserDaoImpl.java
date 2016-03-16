@@ -1,6 +1,7 @@
 package com.changhong.user.repository;
 
 import com.changhong.common.repository.HibernateEntityObjectDao;
+import com.changhong.user.domain.Position;
 import com.changhong.user.domain.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -8,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
-import java.security.PublicKey;
 import java.util.List;
 
 /**
@@ -24,15 +24,14 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
         return users.isEmpty() ? null : users.get(0);
     }
 
+    public Position findPositionByName(String name) {
+         List<Position> positions = getHibernateTemplate().find("from Position p where p.name = ?", name);
+        return positions.isEmpty() ? null : positions.get(0);    }
+
     public List<User> loadAllUser(){
         StringBuilder builder = new StringBuilder();
         builder.append("from User");
         return getHibernateTemplate().find(builder.toString());
-    }
-
-    public List<User> loadUserBydepartmentId(int departmentId){
-         List<User> users = getHibernateTemplate().find("from User u where u.department.id = ? ", departmentId);
-         return users;
     }
 
     public List<User> loadUsers(String name, int startPosition, int pageSize) {

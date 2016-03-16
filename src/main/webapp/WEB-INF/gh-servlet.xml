@@ -48,13 +48,13 @@
                 <prop key="/backend/user/departmentform.html">departmentController</prop>
                 <prop key="/backend/user/departmentoverview.html">departmentManagerController</prop>
                 <prop key="/backend/user/userorgstructure.html">userorgstructureController</prop>
-                <prop key="/backend/user/userpositionlist.html">userpositionController</prop>
+                <prop key="/backend/user/userpositionlist.html">userPositionController</prop>
                 <prop key="/backend/user/userole.html">useroleController</prop>
                 <prop key="/backend/user/useroverview.html">userManagerController</prop>
-                <prop key="/backend/user/useradd.html">userAddController</prop>
+                <prop key="/backend/user/userform.html">userFormController</prop>
                 <prop key="/backend/user/userdelete.html">userDeleteController</prop>
 
-                <prop key="/backend/user/addposition.html">addpositioncontroller</prop>
+                <prop key="/backend/user/addposition.html">positionController</prop>
                 <prop key="/backend/user/deleteposition.html">deletepositioncontroller</prop>
                 <!--应用管理-->
 
@@ -89,7 +89,7 @@
     <bean id="userorgstructureController" class="com.changhong.user.web.controller.UserOrgstructureController">
     </bean>
 
-    <bean id="userpositionController" class="com.changhong.user.web.controller.UserPositionController">
+    <bean id="userPositionController" class="com.changhong.user.web.controller.UserPositionController">
         <property name="positionService" ref="positionService"/>
     </bean>
 
@@ -99,7 +99,7 @@
           <property name="userService" ref="userService"/>
           <property name="departmentService" ref="departmentService"/>
     </bean>
-    <bean id="userAddController" class="com.changhong.user.web.controller.UserAddController">
+    <bean id="userFormController" class="com.changhong.user.web.controller.UserFormController">
         <property name="userService" ref="userService"/>
         <property name="departmentService" ref="departmentService"/>
         <property name="positionService" ref="positionService"/>
@@ -108,7 +108,7 @@
         <property name="userService" ref="userService"/>
     </bean>
 
-    <bean id="addpositioncontroller" class="com.changhong.user.web.controller.PositionController">
+    <bean id="positionController" class="com.changhong.user.web.controller.PositionController">
         <property name="positionService" ref="positionService"/>
     </bean>
 

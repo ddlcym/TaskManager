@@ -24,21 +24,20 @@ public class User extends EntityBase implements UserDetails {
     private String address;//联系地址
     private PersistentDateTime lastLogin;//最近一次登录时间
     private DepartmentCategory department;//所在部门、小组
-    private String position;    //职位
+    private Position position;    //职位
     private List<Role> roles = new ArrayList<Role>();//用户拥有的角色
     private boolean enabled = true;
 
     public User() {
     }
 
-    public User(String username,String account,String password,String employeeId,String email,String address,String position) {
+    public User(String username,String account,String password,String employeeId,String email,String address) {
         this.username = username;
         this.account = account;
         this.password = password;
         this.employeeId = employeeId;
         this.email = email;
         this.address = address;
-        this.position = position;
         this.enabled = true;
     }
 
@@ -109,12 +108,13 @@ public class User extends EntityBase implements UserDetails {
         this.department = department;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+
+    public Position getPosition() {
+        return position;
     }
 
-    public String getPosition() {
-        return position;
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     /*************************************************GETTER**********************************************************/

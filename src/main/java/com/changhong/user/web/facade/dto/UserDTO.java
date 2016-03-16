@@ -1,7 +1,6 @@
 package com.changhong.user.web.facade.dto;
 
 import com.changhong.common.utils.CHStringUtils;
-import com.changhong.user.domain.DepartmentCategory;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,8 +18,7 @@ public class UserDTO implements Serializable {
     private String account;   //用户登录账号
     private String password;
     private int departmentId;
-    private String departmentName;
-    private String fullDepartmentName;
+    private String fullDepartmentName="";//记录员工部门全称：公司.部门。小组
     private String position;
     private String email;
     private String address;
@@ -32,15 +30,14 @@ public class UserDTO implements Serializable {
         this.password = CHStringUtils.getRandomString(10);
     }
 
-    public UserDTO(int id, String username, String employeeId, String account, String password, int departmentId,String departmentName,String fullDepartmentPath,String position,String email,String address,boolean enabled) {
+    public UserDTO(int id, String username, String employeeId, String account, String password, int departmentId,String departmentName,String position,String email,String address,boolean enabled) {
         this.id = id;
         this.username= username;
         this.employeeId = employeeId;
         this.account = account;
         this.password = password;
         this.departmentId = departmentId;
-        this.departmentName = departmentName;
-        this.fullDepartmentName = fullDepartmentPath;
+        this.fullDepartmentName = departmentName;
         this.position = position;
         this.email = email;
         this.address = address;
@@ -143,11 +140,11 @@ public class UserDTO implements Serializable {
     }
 
     public String getDepartmentName() {
-        return departmentName;
+        return fullDepartmentName;
     }
 
     public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
+        this.fullDepartmentName = departmentName;
     }
 
     public String getPosition() {
@@ -189,4 +186,29 @@ public class UserDTO implements Serializable {
     public void setRoles(List<String> roles) {
         this.roles = roles;
     }
+
+    public String getDepartmentLevel1() {
+        String[] levels= fullDepartmentName.split("/");
+        if(null != levels  && levels.length>1){
+             return levels[1];
+        }
+        return "无";
+    }
+
+    public String getDepartmentLevel2() {
+        String[]levels= fullDepartmentName.split("/");
+        if(null != levels  && levels.length>2){
+             return levels[2];
+        }
+        return "无";
+    }
+
+    public String getDepartmentLevel3() {
+        String[] levels= fullDepartmentName.split("/");
+        if(null != levels  && levels.length>3){
+             return levels[3];
+        }
+        return "无";
+    }
+
 }

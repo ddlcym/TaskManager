@@ -240,10 +240,7 @@
                 }
                 branchNode.attr("isLoad", "true");
             });
-
         }
-
-
     }
 
 
@@ -258,7 +255,6 @@
                     hideSubDepartment(curID);
                 }
             }
-
         });
     }
 

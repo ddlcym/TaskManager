@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>应用市场后台管理系统</title>
+	<title>登录--任务管理系统</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
@@ -14,12 +14,12 @@
 
 <body>
     <div id="logo">
-        <img src="${pageContext.request.contextPath}/images/login-logo.png" alt="" />
+        <img src="${pageContext.request.contextPath}/images/bg.png" alt="" />
     </div>
     <div id="loginbox">
         <form id="loginform" class="form-vertical" action="${pageContext.request.contextPath}/j_spring_security_check" method="post">
              <div class="control-group normal_text">
-                 <h3>应用商店后台管理系统 V${projectVersion}</h3>
+                 <h3>任务管理后台管理系统 V${projectVersion}</h3>
                  <h6>提示：建议使用IE、FireFox或Chrome浏览器</h6>
              </div>
              <div class="control-group">

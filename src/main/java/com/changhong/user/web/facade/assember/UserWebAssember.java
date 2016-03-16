@@ -2,12 +2,11 @@ package com.changhong.user.web.facade.assember;
 
 import com.changhong.common.repository.EntityLoadHolder;
 import com.changhong.user.domain.DepartmentCategory;
-import com.changhong.user.repository.DepartmentDao;
-import com.changhong.user.web.facade.dto.UserDTO;
-import com.changhong.user.web.facade.dto.UserPasswordDTO;
+import com.changhong.user.domain.Position;
 import com.changhong.user.domain.Role;
 import com.changhong.user.domain.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.changhong.user.web.facade.dto.UserDTO;
+import com.changhong.user.web.facade.dto.UserPasswordDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,20 +32,23 @@ public class UserWebAssember {
             user.setEmployeeId(userDTO.getEmployeeId());
             user.setAccount(userDTO.getAccount());    //用户登录账号
             user.setPassword(userDTO.getPassword());
-            user.setPosition(userDTO.getPosition());
             user.setEmail(userDTO.getEmail());
             user.setAddress(userDTO.getAddress());
         } else {
-            user = new User(userDTO.getUsername(),userDTO.getAccount(), userDTO.getPassword(),userDTO.getEmployeeId(),userDTO.getEmail(),userDTO.getAddress(),userDTO.getPosition());
-
+            user = new User(userDTO.getUsername(),userDTO.getAccount(), userDTO.getPassword(),userDTO.getEmployeeId(),userDTO.getEmail(),userDTO.getAddress());
         }
 
-        if(user.getDepartment()== null || user.getDepartment().getId() != userDTO.getDepartmentId()){
-
+        if(userDTO.getDepartmentId() > 0){
             DepartmentCategory department = new DepartmentCategory();
             department.setId(userDTO.getDepartmentId());
             user.setDepartment(department);
         }
+
+        if(null != userDTO.getPosition()){
+            Position position = (Position)EntityLoadHolder.getUserDao().findPositionByName(userDTO.getPosition());
+            user.setPosition(position);
+        }
+
 
         List<String> roles = userDTO.getRoles();
         if (roles != null) {
@@ -68,17 +70,18 @@ public class UserWebAssember {
         final String username = user.getUsername();
         final String account = user.getAccount();
         final String password = user.getPassword();
-        final String position = user.getPosition();
         final String Email = user.getEmail();
         final String address = user.getAddress();
         final boolean enabled = user.isEnabled();
 
         DepartmentCategory department = user.getDepartment();
-        final int departmentId = department.getId();
-        final String departmentName = department.getName();
-        final String fullDepartmentName = department.getFullCategoryPath();
+        Position position =user.getPosition();
 
-        UserDTO dto =  new UserDTO(id, username,employeeId, account, password,departmentId,departmentName,fullDepartmentName,position,Email,address,enabled);
+        final int departmentId =(null==department)? -1: department.getId();
+        final String departmentName =(null==department)?"": department.getFullCategoryPath();
+        final String positionName = (null==position)?"":position.getName();
+
+        UserDTO dto =  new UserDTO(id, username,employeeId, account, password,departmentId,departmentName,positionName,Email,address,enabled);
         List<String> roles = new ArrayList<String>();
         if(user.getRoles() != null) {
             for (Role role : user.getRoles()) {
@@ -86,7 +89,6 @@ public class UserWebAssember {
             }
         }
         dto.setRoles(roles);
-
         return dto;
     }
 

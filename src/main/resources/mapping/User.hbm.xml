@@ -9,12 +9,12 @@
             <generator class="increment"/>
         </id>
         <many-to-one name="department" column="parent_id" class="com.changhong.user.domain.DepartmentCategory" lazy="proxy" cascade="none" insert="true" update="true"/>
+        <many-to-one name="position" column="position_id" class="com.changhong.user.domain.Position" lazy="proxy" cascade="none" insert="true" update="true"/>
         <property name="timestamp" column="timestamp" type="java.util.Date"/>
         <property name="account" column="account" insert="true" update="true" type="java.lang.String"/>
         <property name="employeeId" column="employee_id" insert="true" update="true" type="java.lang.String"/>
         <property name="username" column="username" insert="true" update="true" type="java.lang.String"/>
         <property name="password" column="password" insert="true" update="true" type="java.lang.String"/>
-        <property name="position" column="position" insert="true" update="true" type="java.lang.String"/>
         <property name="email" column="email" insert="true" update="true" type="java.lang.String"/>
         <property name="lastLogin" column="lastLogin" insert="true" update="true" type="org.joda.time.contrib.hibernate.PersistentDateTime"/>
         <property name="address" column="address" insert="true" update="true" type="java.lang.String"/>

@@ -29,6 +29,7 @@
           type="text/css"/>
 
 
+}
 </head>
 
 <body>
@@ -42,8 +43,6 @@
      <jsp:include page="/WEB-INF/jsp/backend/common/organization.jsp"/>
     <div id="maincontent">
         <div id="add">
-            <button id="button">添加角色</button>
-
             <table class="table table-bordered position-tab">
                 <thead >
                 <tr>
@@ -52,6 +51,17 @@
                     <th class="des" >描述</th>
                 </tr>
                 </thead>
+
+                <tbody >
+
+                <c:forEach var="i" begin="1" end="${roleSize}">
+                <tr>
+                    <td>${i}</td>
+                    <td>${roleTypes[i-1]}</td>
+                    <td>${roleDescription[i-1]}</td>
+                </tr>
+                </c:forEach>
+                </tbody>
             </table>
         </div>
     </div>
