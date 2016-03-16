@@ -1,5 +1,8 @@
 package com.changhong.user.service;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.changhong.user.domain.DepartmentCategory;
 import com.changhong.user.web.facade.dto.UserDTO;
 import com.changhong.user.web.facade.dto.UserPasswordDTO;
 import com.changhong.user.domain.User;
@@ -88,6 +91,31 @@ public class UserServiceImpl implements UserService {
     public void changeUserPassword(int userId, String newPassword) {
         User user = (User) userDao.findById(userId, User.class);
         user.setPassword(newPassword);
+    }
+
+
+    public JSONArray obtainUserByDepartmentId(int departmentId){
+        List<User> users = null;
+        if(departmentId > 0){
+             users = userDao.loadUserBydepartmentId(departmentId);
+        }
+
+        JSONArray array = new JSONArray();
+        if(users != null){
+            for (User user : users){
+                JSONObject o = new JSONObject();
+                o.put("id",user.getId());
+                o.put("name",user.getUsername());
+                o.put("employeeId",user.getEmployeeId());
+                o.put("account",user.getAccount());
+                o.put("position",user.getPosition());
+                o.put("email",user.getEmail());
+                o.put("address",user.getAddress());
+                o.put("parentID", user.getDepartment().getId());
+                array.add(o);
+            }
+        }
+        return array;
     }
 
 

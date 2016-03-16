@@ -1,5 +1,6 @@
 package com.changhong.user.service;
 
+import com.alibaba.fastjson.JSONArray;
 import com.changhong.user.web.facade.dto.UserDTO;
 import com.changhong.user.web.facade.dto.UserPasswordDTO;
 import org.springframework.security.core.userdetails.User;
@@ -35,5 +36,7 @@ public interface UserService extends UserDetailsService {
     boolean obtainOldPasswordRight(int userId, String oldPassword);
 
     void changeUserPassword(int userId, String newPassword);
+
+    JSONArray obtainUserByDepartmentId(int departmentId);
 
 }

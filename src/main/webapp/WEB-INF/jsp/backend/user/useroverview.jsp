@@ -47,13 +47,13 @@
             <table id="table_department" class="table table-bordered position-tab">
                 <thead>
                     <tr>
-                        <th style="width: 25%;text-align: center;">部门/姓名</th>
-                        <th>员工编号</th>
-                        <th>用户名</th>
-                        <th>职位</th>
-                        <th style="width: 10%">Email</th>
-                        <th>地址</th>
-                        <th>操作</th>
+                        <th style="width: 20%;text-align: center;">部门/姓名</th>
+                        <th style="text-align: center;">员工编号</th>
+                        <th style="text-align: center;">用户名</th>
+                        <th style="text-align: center;">职 位</th>
+                        <th style="width: 10%;text-align: center;">Email</th>
+                        <th style="text-align: center;">地 址</th>
+                        <th style="text-align: center;">操 作</th>
                     </tr>
                 </thead>
                 <tbody id="table table-list">
@@ -78,34 +78,9 @@
                               <td></td>
                               <td></td>
                               <td></td>
-                              <td class="more-details">
-                                    <a href="${pageContext.request.contextPath}/backend/user/useradd.html?userId=${user.id}"><i
-                                            class="icon-pencil icon-white"></i></a>&nbsp; &nbsp;&nbsp; &nbsp;
-                                    <a title="" href="javascript:void(0);" onclick="userDeleteConfirm('${user.id}');"><i
-                                            class="icon-remove icon-white"></i></a>
-                              </td>
-
+                              <td></td>
                         </tr>
                     </c:forEach>
-
-
-
-                    <%--<c:forEach items="${users}" var="user">--%>
-                        <%--<tr>--%>
-                            <%--<td>${user.username}</td>--%>
-                            <%--<td>${user.employeeId}</td>--%>
-                            <%--<td>${user.account}</td>--%>
-                            <%--<td>${user.position}</td>--%>
-                            <%--<td>${user.email}</td>--%>
-                            <%--<td>${user.address}</td>--%>
-                            <%--<td class="actions">--%>
-                                <%--<a href="${pageContext.request.contextPath}/backend/user/useradd.html?userId=${user.id}"><i--%>
-                                        <%--class="icon-pencil icon-white"></i></a>--%>
-                                <%--<a title="" href="javascript:void(0);" onclick="userDeleteConfirm('${user.id}');"><i--%>
-                                        <%--class="icon-remove icon-white"></i></a>--%>
-                            <%--</td>--%>
-                        <%--</tr>--%>
-                    <%--</c:forEach>--%>
 
                 </tbody>
 
@@ -170,19 +145,17 @@
                 for(var i=0; i<statisticData.length; i++) {
                     var departmentValues = statisticData[i];
                     html = "<tr id='" + departmentValues.departmentId + "' parentId='" + departmentValues.parentID + "' isDepart='" + departmentValues.isDepart +"' isLoad='"+departmentValues.isLoad+"'>";
-
-                    html += "<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+"<a href='javascript:void(0);' onclick='toggleDepart('departmentValues.id');'>"+'<span class="icon">'+'<i id="icon_departmentValues.id" class="icon-plus"></i>'+'</span>'+departmentValues.departmentName+"</a>"+"</td>";
+                    html += "<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a onclick='toggleUser(" + departmentValues.departmentId + ");'><span class='icon'><i id='icon_"+departmentValues.departmentId+"' class='icon-plus'></i></span></a>" + departmentValues.departmentName + "</td>";
                     html += "<td>"+"</td>";
                     html += "<td>"+"</td>";
                     html += "<td>"+"</td>";
                     html += "<td>"+"</td>";
                     html += "<td>"+"</td>";
-                    html += "<td class='more-details'>"+
-                            "<a href='${pageContext.request.contextPath}/backend/user/useradd.html?userId=${user.id}' class='icon-pencil icon-white'></a>&nbsp; &nbsp;&nbsp; &nbsp;<a  href='javascript:void(0);' onclick='userDeleteConfirm('${user.id}');' class='icon-remove icon-white'></a></td>";
+                    html += "<td>"+"</td>";
 
                     html += "</tr>";
                     //获取要插入行的表格
-                   branchNode.after(html)
+                   branchNode.after(html);
             }
             branchNode.attr("isLoad","true");
         });
@@ -208,6 +181,43 @@
                 }
             });
      }
+
+
+
+    function toggleUser(departmentid){
+        var department = jQuery("#"+departmentid);   //获取当前部门
+        var icon=jQuery("#icon_"+departmentid);      //获取当前的Icon
+        if(icon.attr("class") == "icon-plus"){     //"+"变成"-" 显示用户
+            icon.attr("class","icon-minus");
+            showCurrentDeptUser(departmentid);
+        }else{
+            icon.attr("class","icon-plus");
+            hideSubDepartment(departmentid);    //"-"变"+",隐藏用户
+        }
+    }
+
+    function showCurrentDeptUser(departmentid){
+            SystemDWRHandler.obtainUserByDepartmentId(departmentid,function(result){
+            var statisticData = JSON.parse(result);
+            var html = "";
+            for(var i=0; i<statisticData.length; i++) {
+                var user = statisticData[i];
+                html = "<tr id='" + user.id + "' parentId='" + user.parentID + "'>";
+                html += "<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + user.name + "</td>";
+                html += "<td style='text-align: center;'>" + user.employeeId + "</td>";
+                html += "<td style='text-align: center;'>" + user.account + "</td>";
+                html += "<td style='text-align: center;'>" + user.position + "</td>";
+                html += "<td style='text-align: center;'>" + user.email + "</td>";
+                html += "<td style='text-align: center;'>" + user.address + "</td>";
+                html += "<td class='more-details' style='text-align: center;'>"+
+                                "<a href='${pageContext.request.contextPath}/backend/user/useradd.html?userId=" + user.id + "' class='icon-pencil icon-white'></a>&nbsp; &nbsp;&nbsp; &nbsp;<a  href='javascript:void(0);' onclick='userDeleteConfirm(" + user.id + ");' class='icon-remove icon-white'></a></td>";
+
+                html += "</tr>";
+                //获取要插入行的表格
+               jQuery("#"+departmentid).after(html);
+            }
+        });
+    }
 
 
 

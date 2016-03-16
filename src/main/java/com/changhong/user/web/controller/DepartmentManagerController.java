@@ -34,6 +34,7 @@ public class DepartmentManagerController extends AbstractController {
         List<DepartmentCategoryDTO> departments = departmentService.obtainCategoryByLevel("LEVEL_FIRST");
         List<DepartmentCategoryDTO> list = new ArrayList<DepartmentCategoryDTO>();
 
+        //一级和二级元素全放到List中
         if(null !=departments){
             for(DepartmentCategoryDTO department:departments){
                   department.setIsLoad(true);

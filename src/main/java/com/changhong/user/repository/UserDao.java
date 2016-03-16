@@ -19,10 +19,10 @@ public interface UserDao extends EntityObjectDao {
     Position findPositionByName(String name);
 
     List<User> loadAllUser();
-
     List<User> loadUsers(String name, int startPosition, int pageSize);
 
     int loadUserSize(String name);
 
     boolean loadUserExist(int userId, String username);
+
 }
