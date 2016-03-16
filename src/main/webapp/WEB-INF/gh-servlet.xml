@@ -40,7 +40,7 @@
             <props>
                 <prop key="/error.html">errorHandleController</prop>
                 <prop key="/backend/error.html">errorHandleController</prop>
-                <prop key="/backend/index.html">backendLoginController</prop>
+                <prop key="/backend/index.html">loginController</prop>
                 <prop key="/backend/dashboard.html">dashboardController</prop>
 
                 <!--用户管理-->
@@ -69,7 +69,7 @@
 
     <bean id="errorHandleController" class="com.changhong.common.web.contorller.ApplicationExceptionController"/>
 
-    <bean id="backendLoginController" class="com.changhong.system.web.controller.BackendLoginController">
+    <bean id="loginController" class="com.changhong.system.web.controller.LoginController">
         <property name="projectVersion" value="${application.version}"/>
     </bean>
 

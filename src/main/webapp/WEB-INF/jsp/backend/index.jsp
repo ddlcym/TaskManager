@@ -12,14 +12,14 @@
     <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 </head>
 
-<body>
+<body style="background-color: #ffffff">
     <div id="logo">
-        <img src="${pageContext.request.contextPath}/images/bg.png" alt="" />
+        <img src="${pageContext.request.contextPath}/images/logo1.png" alt="" />
     </div>
     <div id="loginbox">
         <form id="loginform" class="form-vertical" action="${pageContext.request.contextPath}/j_spring_security_check" method="post">
-             <div class="control-group normal_text">
-                 <h3>任务管理后台管理系统 V${projectVersion}</h3>
+             <div class="control-group normal_text" style="text-align: right">
+                 <h3>任务管理系统 V${projectVersion}</h3>
                  <h6>提示：建议使用IE、FireFox或Chrome浏览器</h6>
              </div>
              <div class="control-group">
