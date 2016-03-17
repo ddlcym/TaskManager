@@ -25,4 +25,6 @@ public interface UserDao extends EntityObjectDao {
 
     boolean loadUserExist(int userId, String username);
 
+    List<User> loadUserBydepartmentId(int departmentId);
+
 }

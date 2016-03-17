@@ -43,7 +43,7 @@
     <div id="maincontent">
         <div id="add">
             <input type="button" class="button button-flat-primary" value="添加用户"
-                   onclick="window.location.href = '${pageContext.request.contextPath}/backend/user/useradd.html'"/>
+                   onclick="window.location.href = '${pageContext.request.contextPath}/backend/user/userform.html'"/>
             <table id="table_department" class="table table-bordered position-tab">
                 <thead>
                     <tr>
@@ -210,7 +210,7 @@
                 html += "<td style='text-align: center;'>" + user.email + "</td>";
                 html += "<td style='text-align: center;'>" + user.address + "</td>";
                 html += "<td class='more-details' style='text-align: center;'>"+
-                                "<a href='${pageContext.request.contextPath}/backend/user/useradd.html?userId=" + user.id + "' class='icon-pencil icon-white'></a>&nbsp; &nbsp;&nbsp; &nbsp;<a  href='javascript:void(0);' onclick='userDeleteConfirm(" + user.id + ");' class='icon-remove icon-white'></a></td>";
+                                "<a href='${pageContext.request.contextPath}/backend/user/userform.html?userId=" + user.id + "' class='icon-pencil icon-white'></a>&nbsp; &nbsp;&nbsp; &nbsp;<a  href='javascript:void(0);' onclick='userDeleteConfirm(" + user.id + ");' class='icon-remove icon-white'></a></td>";
 
                 html += "</tr>";
                 //获取要插入行的表格

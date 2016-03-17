@@ -70,4 +70,9 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
             return ((Long)list.get(0)).intValue() > 0 ? true : false;
         }
     }
+
+     public List<User> loadUserBydepartmentId(int departmentId){
+         List<User> users = getHibernateTemplate().find("from User u where u.department.id = ? ", departmentId);
+         return users;
+    }
 }

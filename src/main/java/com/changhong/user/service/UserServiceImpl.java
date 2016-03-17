@@ -108,7 +108,7 @@ public class UserServiceImpl implements UserService {
                 o.put("name",user.getUsername());
                 o.put("employeeId",user.getEmployeeId());
                 o.put("account",user.getAccount());
-                o.put("position",user.getPosition());
+                o.put("position",user.getPosition().getName());
                 o.put("email",user.getEmail());
                 o.put("address",user.getAddress());
                 o.put("parentID", user.getDepartment().getId());
