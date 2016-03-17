@@ -53,7 +53,7 @@
                 <div>
                     <label class="control-label"><span style="color: red;">*</span>姓名</label>
                     <div class="controls">
-                        <spring-form:input path="username" cssStyle="height: 30px;"/>&nbsp;
+                        <spring-form:input path="username" placeholder="请输入姓名" required="required" cssStyle="height: 30px;"/>&nbsp;
                         <spring-form:errors path="username" cssClass="help-inline"/>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                 <div>
                     <label class="control-label">员工编号</label>
                     <div class="controls">
-                        <spring-form:input path="employeeId" cssStyle="height: 30px;"/>&nbsp;
+                        <spring-form:input path="employeeId" placeholder="请输入员工编号" cssStyle="height: 30px;"/>&nbsp;
                     </div>
                 </div>
 
@@ -73,7 +73,7 @@
                         <c:if test="${user.id > 0}">
                            <c:set var="justRead" value="true"/>
                         </c:if>
-                        <spring-form:input path="account" cssStyle="height: 30px;" readonly="${justRead}"/>&nbsp;
+                        <spring-form:input path="account" placeholder="请输入登录账号" required="required" cssStyle="height: 30px;" readonly="${justRead}"/>&nbsp;
                         <spring-form:errors path="account" cssClass="help-inline"/>
                     </div>
                 </div>
@@ -81,14 +81,14 @@
                 <div>
                     <label class="control-label"><span style="color: red;">*</span>密码</label>
                     <div class="controls">
-                        <spring-form:input type="password"  path="password" cssStyle="height: 30px;"/>&nbsp;
+                        <spring-form:input type="password"  path="password" placeholder="请输入登录密码" required="required" cssStyle="height: 30px;"/>&nbsp;
                         <spring-form:errors path="password" cssClass="help-inline"/>
                     </div>
                 </div>
                 <div>
                     <label class="control-label">所属部门</label>
                     <div class="controls">
-                        <select id="levelOneId" name="levelOneId" onchange="selectDepartmentLevelTwo()">
+                        <select id="levelOneId" name="levelOneId" onclick="selectDepartmentLevelTwo()">
                             <option value=-1>-请选择- </option>
                             <c:forEach items="${firstLevel}" var="levelItem">
                                 <option value=${levelItem.id}  <c:if test="${user.departmentLevel1==levelItem.name}">selected="true"</c:if>>
@@ -97,14 +97,15 @@
                             </c:forEach>
                         </select>
 
-                        <select id="levelTwoId" name="levelTwoId" onchange="selectDepartmentLevelThree()" >
+                        <select id="levelTwoId" name="levelTwoId" onclick="selectDepartmentLevelThree()" <c:if test="${user.id < 0}">style="display: none"</c:if> >
                               <c:set var="departmentLevel2" value="${user.id >0?user.departmentLevel2:'-请选择-'}"></c:set>
-                              <option value=-1>${departmentLevel2}</option>
+                              <option value=-2>${departmentLevel2}</option>
                         </select>
 
-                        <select id="departmentId" name="departmentId" value="user.departmentId">
+                        <select id="departmentId" name="departmentId" value="user.departmentId" <c:if test="${user.id < 0}">style="display: none"</c:if>>
                             <c:set var="departmentLevel3" value="${user.id >0?user.departmentLevel3:'-请选择-'}"></c:set>
-                              <option value="${user.departmentId}">${departmentLevel3}</option>
+                              <%--<option value="${user.departmentId}">${departmentLevel3}</option>--%>
+                              <option value="-3">${departmentLevel3}</option>
                         </select>
                     </div>
 
@@ -114,7 +115,7 @@
                     <div class="controls">
                         <select name="position"  value="user.position">
                             <c:forEach items="${positions}" var="position">
-                                <option value="${position.name}">
+                                <option value="${position.name}" <c:if test="${user.id > 0}">selected="true" </c:if>>
                                     ${position.name}
                                 </option>
                             </c:forEach>
@@ -125,13 +126,13 @@
                 <div>
                     <label class="control-label">Email</label>
                     <div class="controls">
-                        <spring-form:input path="Email" maxlength="30" cssStyle="height: 30px;"/>&nbsp;
+                        <spring-form:input path="Email" maxlength="30" placeholder="请输入Email" cssStyle="height: 30px;"/>&nbsp;
                     </div>
                 </div>
                 <div>
                     <label class="control-label">地址</label>
                     <div class="controls">
-                        <spring-form:input path="address" maxlength="30" cssStyle="height: 30px;"/>&nbsp;
+                        <spring-form:input path="address" maxlength="30" placeholder="请输入地址" cssStyle="height: 30px;"/>&nbsp;
                     </div>
                 </div>
                 <div>
@@ -164,7 +165,7 @@
                             <label><input type="checkbox" name="roleUser" value="ROLE_DEVELOPER"
                                     <c:if  test="${user.hasRoleDeveloper}"> checked</c:if>
                                                                 />&nbsp;&nbsp;开发人员</label>
-                            <spring-form:errors path="password" cssClass="help-inline"/>
+                            <spring-form:errors path="roles" cssClass="help-inline"/>
                         </div>
                 </div>
 
@@ -177,9 +178,9 @@
 <script>
 
     function selectDepartmentLevelTwo(){
-        var parentId = jQuery("#levelOneId").val();
+        var parentId = jQuery("#levelOneId").val();  //获取所选一级部门id
+        jQuery("#levelTwoId").css("display","inline");
         setLeveloneChildrenDepartment(parentId);
-        selectDepartmentLevelThree();
     }
 
     function setLeveloneChildrenDepartment(id){
@@ -198,7 +199,9 @@
             });
       }else{
             newContent = "<option value='-2'>-请选择-</option>"
+            jQuery("#levelTwoId").css("display","none");
             content.html(newContent);
+            selectDepartmentLevelThree();
         }
     }
 
@@ -206,6 +209,7 @@
 
     function selectDepartmentLevelThree(){
         var parentId = jQuery("#levelTwoId").val();
+        jQuery("#departmentId").css("display","inline");
         setLevelTwoChildrenDepartment(parentId);
 
     }
@@ -226,6 +230,7 @@
         });
         }else{
             newContent = "<option value='-3'>-请选择-</option>"
+            jQuery("#departmentId").css("display","none");
             content.html(newContent);
         }
 
