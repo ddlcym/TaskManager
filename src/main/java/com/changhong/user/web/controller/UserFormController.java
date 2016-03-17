@@ -41,11 +41,12 @@ public class UserFormController extends SimpleFormController{
         int userId = ServletRequestUtils.getIntParameter(request, "userId", -1);
         List<DepartmentCategoryDTO> firstLevel = departmentService.obtainCategoryByLevel("LEVEL_FIRST");
         List<PositionDTO> positions = positionService.obtainAllPositions();
-        request.setAttribute("firstLevel", firstLevel);
+        request.setAttribute("firstLevel", firstLevel);   //一级部门
         request.setAttribute("positions",positions);
 
-        //编辑用户使用
+        //编辑用户使用,
         if(userId > 0){
+
             return userService.obtainUserById(userId);
         }
         return new UserDTO();
@@ -57,7 +58,7 @@ public class UserFormController extends SimpleFormController{
         int userId = ServletRequestUtils.getIntParameter(request,"userId",-1);
         String userName = ServletRequestUtils.getStringParameter(request,"username","");
         if (!StringUtils.hasText(userName)) {
-            errors.rejectValue("username", "user.username.empty");
+            errors.rejectValue("username", "user.name.empty");
         }
 
         String account = ServletRequestUtils.getStringParameter(request,"account","");
@@ -70,9 +71,14 @@ public class UserFormController extends SimpleFormController{
             }
         }
 
+        String password = ServletRequestUtils.getStringParameter(request,"password","");
+        if (!StringUtils.hasText(password)) {
+            errors.rejectValue("password", "user.password.empty");
+        }
+
         String[] roles = ServletRequestUtils.getStringParameters(request, "roleUser");
         if (roles == null || roles.length <= 0) {
-            errors.rejectValue("password", "user.role.empty");
+            errors.rejectValue("roles", "user.role.empty");
         }
 
     }
