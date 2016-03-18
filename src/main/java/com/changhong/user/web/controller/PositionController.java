@@ -4,6 +4,7 @@ import com.changhong.user.service.PositionService;
 import com.changhong.user.web.facade.dto.PositionDTO;
 import com.changhong.user.web.facade.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,12 +26,7 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 public class PositionController extends SimpleFormController {
-    //    @Override
-//    protected ModelAndView handleRequestInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
-//        Map<String, Object> model = new HashMap<String, Object>();
-//        model.put("MANAGE_KEY", "STRUCTURE");
-//        return new ModelAndView("backend/user/addposition", model);
-//    }
+
     @Autowired
     private PositionService positionService;
 
@@ -56,7 +52,17 @@ public class PositionController extends SimpleFormController {
 
     @Override
     protected void onBindAndValidate(HttpServletRequest request, Object command, BindException errors) throws Exception {
-        super.onBindAndValidate(request, command, errors);    //To change body of overridden methods use File | Settings | File Templates.
+
+        String name = ServletRequestUtils.getStringParameter(request,"name","");
+        if(!StringUtils.hasText(name)){
+            errors.rejectValue("name", "position.name.empty");
+        }else {
+            boolean exist = positionService.obtainPosExist(name);
+            if(exist){
+               errors.rejectValue("name", "position.name.exist");
+            }
+        }
+
     }
 
     @Override
@@ -65,16 +71,7 @@ public class PositionController extends SimpleFormController {
         int posID = ServletRequestUtils.getIntParameter(request, "posID", -1);
 
         if ("add".equals(method)||"update".equals(method)) {
-            System.out.println("add position");
-//            PositionDTO posDTO=null;
-//             Map<String, Object> model = new HashMap<String, Object>();
-//            if(posID>0){
-//               posDTO=positionService.obtainPositionById(posID);
-//            }else{}{
-//              posDTO=new PositionDTO();
-//            }
-//            model.put("",posDTO);
-//            return new ModelAndView("backend/user/addposition",model);
+
         } else if ("delete".equals(method)) {
             System.out.println("delete position");
             positionService.deleteById(posID);

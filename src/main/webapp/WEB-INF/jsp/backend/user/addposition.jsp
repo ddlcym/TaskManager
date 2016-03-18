@@ -60,7 +60,8 @@
                 <label class="name-label">描述:</label>
 
                 <div>
-                    <spring-form:input path="des" maxlength="30" cssStyle="height: 200px;"/>&nbsp;
+                    <spring-form:textarea id="des" path="des" required="required" rows="8"
+                                              cols="80" cssStyle="width: 500px;" maxlength="100" placeholder="请输入应用描述..."/>
                     <spring-form:errors path="des" cssClass="help-inline"/>
                 </div>
             </div>

@@ -22,7 +22,7 @@ public interface PositionService {
 
     int obtainPositionSize(String name);
 
-    boolean obtainPositionExist(int positionId, String name);
+//    boolean obtainPositionExist(int positionId, String name);
 
     void saveOrUpPos(PositionDTO positionDTO);
 
@@ -31,4 +31,6 @@ public interface PositionService {
     void changePosDetails(PositionDTO positionDTO);
 
     void changeStatusForPosition(int positionId);
+
+    boolean obtainPosExist(String posName);
 }

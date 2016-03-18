@@ -38,6 +38,12 @@ public class PositionDaoImpl extends HibernateEntityObjectDao implements Positio
         StringBuilder builder = new StringBuilder();
         builder.append("select count(pos.id) from Position pos");
         List list =  getHibernateTemplate().find(builder.toString());
-        return ((Long)list.get(0)).intValue();    }
+        return ((Long)list.get(0)).intValue();
+    }
+
+    public boolean loadPosExist(String posName){
+        List list = getHibernateTemplate().find("select count(pos.id) from Position pos where pos.name = ?",posName);
+        return ((Long)list.get(0)).intValue() > 0 ? true : false;
+    }
 
 }

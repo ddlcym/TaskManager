@@ -31,6 +31,8 @@ public class UserPositionController extends AbstractController {
         if(null != posDTOList){
             model.put("posDTOList", posDTOList);
         }
+
+        model.put("ORG_MENU_KEY", "POSITION");
         return new ModelAndView("backend/user/userpositionlist", model);
     }
 

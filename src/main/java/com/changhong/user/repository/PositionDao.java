@@ -18,4 +18,5 @@ public interface PositionDao extends EntityObjectDao {
     List<Position> loadAllCategory();
     List<Position> findPosByName(String name);
     int getPosSize();
+    boolean loadPosExist(String posName);
 }

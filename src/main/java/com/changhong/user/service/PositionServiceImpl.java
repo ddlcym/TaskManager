@@ -38,16 +38,16 @@ public class PositionServiceImpl implements PositionService {
         return 0;
     }
 
-    public boolean obtainPositionExist(int positionId, String name) {
-        boolean flag = false;
-        if (positionId > 0&& StringUtils.hasText(name)) {
-            Position pos = (Position) positionDao.findById(positionId, Position.class);
-            if(name.equals(pos.getName())){
-                flag=true;
-            }
-        }
-        return flag;
-    }
+//    public boolean obtainPositionExist(int positionId, String name) {
+//        boolean flag = false;
+//        if (positionId > 0&& StringUtils.hasText(name)) {
+//            Position pos = (Position) positionDao.findById(positionId, Position.class);
+//            if(name.equals(pos.getName())){
+//                flag=true;
+//            }
+//        }
+//        return flag;
+//    }
 
     public void saveOrUpPos(PositionDTO positionDTO) {
         Position pos = PositionWebAssember.toPosDomain(positionDTO);
@@ -69,5 +69,9 @@ public class PositionServiceImpl implements PositionService {
     }
 
     public void changeStatusForPosition(int positionId) {
+    }
+
+     public boolean obtainPosExist(String posName){
+        return positionDao.loadPosExist(posName);
     }
 }

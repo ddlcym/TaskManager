@@ -49,31 +49,30 @@
             </div>
             <table class="table table-bordered position-tab">
                 <thead>
-                <tr>
-                    <th class="no">序号</th>
-                    <th class="name">名称</th>
-                    <th class="des">描述</th>
-                    <th class="edit">操作</th>
-                </tr>
+                    <tr>
+                        <th class="no" style="text-align: center;">序号</th>
+                        <th class="name" style="text-align: center;width: 15%;">名称</th>
+                        <th class="des" style="text-align: center;">描述</th>
+                        <th class="edit" style="text-align: center;width: 15%;">操作</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${posDTOList}" var="pos" varStatus="status">
-                    <tr class="gradeX">
-                        <td>${status.count}</td>
-                        <td>${pos.name}</td>
-                        <td>${pos.des}</td>
+                    <c:forEach items="${posDTOList}" var="pos" varStatus="status">
+                        <tr class="gradeX">
+                            <td style="text-align: center;">${status.count}</td>
+                            <td style="text-align: center;">${pos.name}</td>
+                            <td style="text-align: center;">${pos.des}</td>
 
-                        <td class="more-details">
-                            <a href="${pageContext.request.contextPath}/backend/user/addposition.html?posId=${pos.id}&method=update">
-                                <%--onclick="openDepartmentDialog('${pos.id}', 'update');"--%>
-                               <i class="icon-pencil icon-white"></i></a>
-                             &nbsp; &nbsp; <a title="" href="javascript:void(0);"
-                               onclick="posDeleteConfirm(${pos.id});">
-                               <i class="icon-remove icon-white"></i></a>
+                            <td class="more-details" style="text-align: center;">
+                                <a href="${pageContext.request.contextPath}/backend/user/addposition.html?posId=${pos.id}&method=update">
+                                    <i class="icon-pencil icon-white"></i></a>
+                                &nbsp;&nbsp; &nbsp; <a title="" href="javascript:void(0);"
+                                                       onclick="posDeleteConfirm(${pos.id});">
+                                <i class="icon-remove icon-white"></i></a>
 
-                        </td>
-                    </tr>
-                </c:forEach>
+                            </td>
+                        </tr>
+                    </c:forEach>
 
                 </tbody>
             </table>
