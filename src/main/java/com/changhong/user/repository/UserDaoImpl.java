@@ -19,8 +19,8 @@ import java.util.List;
 @Repository("userDao")
 public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
 
-    public UserDetails findUserByName(String username) {
-        List<User> users = getHibernateTemplate().find("from User u where u.username = ? and u.enabled = true", username);
+    public UserDetails findUserByName(String account) {
+        List<User> users = getHibernateTemplate().find("from User u where u.account = ? and u.enabled = true", account);
         return users.isEmpty() ? null : users.get(0);
     }
 

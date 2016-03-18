@@ -44,8 +44,9 @@
     <div id="maincontent">
         <div id="add">
             <div class="mybutton">
-                <a id="button" href="javascript:void(0);" onclick="openDepartmentDialog('${department.id}', 'add');"
-                   class="button button-flat-primary">添加部门</a>
+                     <input type="button" class="button button-flat-primary" value="添加部门"
+                                     onclick="openDepartmentDialog('${department.id}', 'add');"/>
+
             </div>
             <table id="table_department" class="table table-bordered position-tab">
                 <thead>
@@ -53,8 +54,7 @@
                     <th class="no">序号</th>
                     <th class="orgname">名称</th>
                     <th class="orgleader">负责人</th>
-                    <th class="edit"></th>
-                    <th class="delete"></th>
+                    <th class="edit">操作</th>
 
                 </tr>
                 </thead>
@@ -82,12 +82,9 @@
                         </td>
                         <td>${department.principleUser}</td>
                         <td class="more-details">
-                            <a href="javascript:void(0);" onclick="openDepartmentDialog('${department.id}', 'edit');"
-                               class="btn btn-primary btn-mini">修改</a>
-                        </td>
-                        <td class="more-details">
-                            <a href="javascript:void(0);" onclick="departmentDeleteConfirm('${department.id}');"
-                               class="btn btn-primary btn-mini">删除</a>
+                            <a href="javascript:void(0);" onclick="openDepartmentDialog('${department.id}', 'edit');"><i class="icon-pencil icon-white"></i></a>
+                            &nbsp; &nbsp; <a href="javascript:void(0);" onclick="departmentDeleteConfirm('${department.id}');">
+                               <i class="icon-remove icon-white"></i></a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -232,8 +229,8 @@
                         html += "<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + departmentValues.departmentName + "</td>";
                     }
                     html += "<td>" + departmentValues.principleUser + "</td>";
-                    html += "<td class='more-details'>" + "<a href='javascript:void(0);' onclick='openDepartmentDialog('" + departmentValues.departmentId + "', 'edit');'" + " class='btn btn-primary btn-mini'>修改</a></td>";
-                    html += "<td class='more-details'>" + "<a href='javascript:void(0);' onclick='departmentDeleteConfirm('" + departmentValues.departmentId + "');'"+ " class='btn btn-primary btn-mini'>删除</a></td>";
+                    html += "<td class='more-details'><a href='javascript:void(0);' onclick='openDepartmentDialog('" + departmentValues.departmentId + "', 'edit');'><i class='icon-pencil icon-white'></i></a>";
+                    html += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' onclick='departmentDeleteConfirm('" + departmentValues.departmentId + "');'><i class='icon-remove icon-white'></i></a></td>";
                     html += "</tr>";
                     //获取要插入行的表格
                     branchNode.after(html)

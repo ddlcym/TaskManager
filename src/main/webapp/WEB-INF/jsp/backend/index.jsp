@@ -18,6 +18,7 @@
     </div>
     <div id="loginbox">
         <form id="loginform" class="form-vertical" action="${pageContext.request.contextPath}/j_spring_security_check" method="post">
+        <%--<form id="loginform" class="form-vertical" action="${pageContext.request.contextPath}/backend/dashboard.html" method="post">--%>
              <div class="control-group normal_text" style="text-align: right">
                  <h3>任务管理系统 V${projectVersion}</h3>
                  <h6>提示：建议使用IE、FireFox或Chrome浏览器</h6>

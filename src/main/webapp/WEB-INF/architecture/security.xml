@@ -11,7 +11,7 @@
 
         <security:intercept-url pattern="/backend/index.html" access="ROLE_ANONYMOUS"/>
 
-        <security:intercept-url pattern="/backend/**" access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_APP_STATISTIC,ROLE_APP_STATUS,ROLE_APP_INFO,ROLE_APP_RECOMMEND"/>
+        <security:intercept-url pattern="/backend/**" access="ROLE_ADMIN,ROLE_DEPARTMENT_DIRECTOR,ROLE_GROUP_LEADER,ROLE_PRODUCT_MANAGER,ROLE_SOFTWARE_PM,ROLE_HARDWARE_PM,ROLE_DEVELOPER"/>
 
         <!-- 指定登陆页面、成功页面、失败页面-->
         <security:form-login login-page="/backend/index.html" default-target-url="/backend/dashboard.html"

@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface UserDao extends EntityObjectDao {
 
-    UserDetails findUserByName(String username);
+    UserDetails findUserByName(String account);
 
     Position findPositionByName(String name);
 

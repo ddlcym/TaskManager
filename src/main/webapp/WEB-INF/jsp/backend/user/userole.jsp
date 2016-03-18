@@ -47,13 +47,11 @@
                 <thead >
                 <tr>
                     <th class="no" >序号</th>
-                    <th class="name" >名称</th>
+                    <th class="rolename" >名称</th>
                     <th class="des" >描述</th>
                 </tr>
                 </thead>
-
                 <tbody >
-
                 <c:forEach var="i" begin="1" end="${roleSize}">
                 <tr>
                     <td>${i}</td>

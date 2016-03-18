@@ -5,7 +5,7 @@
 
 <!--Header-part-->
 <div id="header">
-    <h1><a href="javascript:void(0);">任务管理后台管理系统</a></h1>
+    <h1><a href="javascript:void(0);">任务后台管理系统</a></h1>
 </div>
 <!--close-Header-part-->
 
@@ -37,22 +37,22 @@
         <li class="active"><a href="${pageContext.request.contextPath}/backend/dashboard.html"><i
                 class="icon icon-home"></i> <span>工作面板</span></a></li>
 
-        <security:authorize ifAnyGranted="ROLE_ADMIN,ROLE_APP_INFO,ROLE_APP_STATUS,ROLE_ANONYMOUS">
+        <security:authorize ifAnyGranted="ROLE_ADMIN,ROLE_DEPARTMENT_DIRECTOR,ROLE_GROUP_LEADER,ROLE_PRODUCT_MANAGER,ROLE_SOFTWARE_PM,ROLE_DEVELOPER,ROLE_ANONYMOUS">
             <li class="submenu"><a href="javascript:void(0);"><i class="icon icon-th"></i> <span>项目状态</span></a>
             </li>
         </security:authorize>
 
-        <security:authorize ifAnyGranted="ROLE_ADMIN,ROLE_APP_STATISTIC,ROLE_ANONYMOUS">
+        <security:authorize ifAnyGranted="ROLE_ADMIN,ROLE_DEPARTMENT_DIRECTOR,ROLE_GROUP_LEADER,ROLE_PRODUCT_MANAGER,ROLE_SOFTWARE_PM,ROLE_DEVELOPER,ROLE_ANONYMOUS">
             <li class="submenu"><a href="javascript:void(0);"><i class="icon icon-shopping-cart"></i> <span>任务列表</span></a>
             </li>
         </security:authorize>
 
-        <security:authorize ifAnyGranted="ROLE_ADMIN,ROLE_APP_INFO,ROLE_APP_STATUS,ROLE_ANONYMOUS">
+        <security:authorize ifAnyGranted="ROLE_ADMIN,ROLE_DEPARTMENT_DIRECTOR,ROLE_GROUP_LEADER,ROLE_PRODUCT_MANAGER,ROLE_SOFTWARE_PM,ROLE_DEVELOPER,ROLE_ANONYMOUS">
             <li class="submenu"><a href="javascript:void(0);"><i class="icon icon-share"></i> <span>经验分享</span></a>
             </li>
         </security:authorize>
 
-        <security:authorize ifAnyGranted="ROLE_ADMIN,ROLE_APP_INFO,ROLE_APP_STATUS,ROLE_ANONYMOUS">
+        <security:authorize ifAnyGranted="ROLE_ADMIN,ROLE_DEPARTMENT_DIRECTOR,ROLE_GROUP_LEADER,ROLE_PRODUCT_MANAGER,ROLE_SOFTWARE_PM,ROLE_DEVELOPER,ROLE_ANONYMOUS">
             <li class="submenu"><a href="javascript:void(0);"><i class="icon icon-th"></i> <span>组织架构</span></a>
             </li>
         </security:authorize>
