@@ -27,7 +27,7 @@ public class UserDTO implements Serializable {
     private List<String> roles;
 
     public UserDTO() {
-        this.password = CHStringUtils.getRandomString(10);
+
     }
 
     public UserDTO(int id, String username, String employeeId, String account, String password, int departmentId,String departmentName,String position,String email,String address,boolean enabled) {

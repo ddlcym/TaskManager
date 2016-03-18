@@ -53,6 +53,8 @@ public class DepartmentController extends AbstractController {
             model.put("department", dto);
             model.put("parentDepartment", parentDepartment);
             model.put("fileRequestHost", fileRequestHost);
+            model.put("ORG_MENU_KEY", "DEPARTMENT");
+
             return new ModelAndView("backend/user/departmentform", model);
         }else if ("save".equals(method)) {
             saveOrUpdateDepartment(httpServletRequest,departmentId);

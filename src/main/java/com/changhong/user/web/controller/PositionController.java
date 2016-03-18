@@ -43,6 +43,7 @@ public class PositionController extends SimpleFormController {
         String des = ServletRequestUtils.getStringParameter(request, "des", "");
         request.setAttribute("name", name);
         request.setAttribute("des", des);
+        request.setAttribute("ORG_MENU_KEY", "POSITION");
 
         if (posId > 0) {
             return positionService.obtainPositionById(posId);

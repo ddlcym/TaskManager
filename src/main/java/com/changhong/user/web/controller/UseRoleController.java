@@ -65,6 +65,7 @@ public class UseRoleController extends AbstractController{
         model.put("roleSize",roleTypes.length);
         model.put("roleTypes",roleTypes);
         model.put("roleDescription",roleDescription);
+        model.put("ORG_MENU_KEY", "ROLE");
 
         return new ModelAndView("backend/user/userole",model);   //To change body of implemented methods use File | Settings | File Templates.
     }

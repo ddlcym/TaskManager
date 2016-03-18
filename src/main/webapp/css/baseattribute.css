@@ -17,14 +17,31 @@ body {
     margin: 20px 0 10px 0
 }
 
-.cur {
 
-}
 
 
 
 div#usermaincontent{
     margin:  40px 0 0 10px;
+}
+
+/*--------------------------------组织架构------------------------------------------*/
+#navfirst ul{
+    list-style-type: none;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.back-con-l-ul a li{ height: 36px; line-height: 36px; padding-left: 43px; cursor: pointer; }
+
+ li.cur {
+    background-color: #07d9cc; color: #fff;
+    /*background-color: #66ccff; color: #fff;*/
+
+}
+li.first-nav-color {
+    background-color: #2B2927; color: #fff;
+
 }
 
 
@@ -84,13 +101,15 @@ div#navfirst {
     margin: 0 0 0 0;
     padding: 0;
     border: 0;
-    background: none repeat scroll 0 0 #f0f0f0;
+    /*background: none repeat scroll 0 0 #f0f0f0;*/
+    background: none repeat scroll 0 0 #DBEAF9;
     position: relative;
     min-height: 520px;
     width: 190px;
     font-size: large;
     z-index: 20;
     float: left;
+
 }
 
 
@@ -99,7 +118,7 @@ div#navfirst {
 
 div#maincontent {
     width: auto;
-    margin:0 10px 10px 200px;
+    margin:0 10px 10px 190px;
     padding: 20px 0 20px 0;
     border: 0;
     border-top: 1px solid #aaa;

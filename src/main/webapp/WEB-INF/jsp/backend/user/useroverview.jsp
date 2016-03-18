@@ -6,7 +6,7 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
-    <title>应用市场后台管理系统</title>
+    <title>网络公司任务管理系统</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-responsive.min.css"/>
@@ -210,7 +210,7 @@
                 html += "<td style='text-align: center;'>" + user.email + "</td>";
                 html += "<td style='text-align: center;'>" + user.address + "</td>";
                 html += "<td class='more-details' style='text-align: center;'>"+
-                                "<a href='${pageContext.request.contextPath}/backend/user/userform.html?userId=" + user.id + "' class='icon-pencil icon-white'></a>&nbsp; &nbsp;&nbsp; &nbsp;<a  href='javascript:void(0);' onclick='userDeleteConfirm(" + user.id + ");' class='icon-remove icon-white'></a></td>";
+                                "<a href='${pageContext.request.contextPath}/backend/user/userform.html?userId=" + user.id + "' class='icon-pencil icon-white'></a>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<a  href='javascript:void(0);' onclick='userDeleteConfirm(" + user.id + ");' class='icon-remove icon-white'></a></td>";
 
                 html += "</tr>";
                 //获取要插入行的表格

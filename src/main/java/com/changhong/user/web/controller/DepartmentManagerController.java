@@ -47,6 +47,7 @@ public class DepartmentManagerController extends AbstractController {
         }
         model.put("departments", list);
         model.put("fileRequestHost", fileRequestHost);
+        model.put("ORG_MENU_KEY", "DEPARTMENT");
         return new ModelAndView("backend/user/departmentoverview", model);
 
     }

@@ -17,20 +17,6 @@
             class="label label-important">5</span></a>
     <a class="top_message tip-bottom" title="Manage Orders"><i class="icon-shopping-cart"></i></a>
 </div>
-<!--close-top-Header-messaages-->
-
-<!--top-Header-menu-->
-<%--<div id="user-nav" class="navbar navbar-inverse">--%>
-    <%--<ul class="nav">--%>
-        <%--<li class=""><a title="" href="javascript:void(0);"><i class="icon icon-user"></i> <span--%>
-                <%--class="text"><ch:user/></span></a></li>--%>
-        <%--<li class=""><a title="" href="${pageContext.request.contextPath}/backend/userchangepassword.html"><i--%>
-                <%--class="icon icon-cog"></i> <span class="text">修改密码</span></a></li>--%>
-        <%--<li class=""><a title="" href="${pageContext.request.contextPath}/j_spring_security_logout"><i--%>
-                <%--class="icon icon-share-alt"></i> <span class="text">退出</span></a></li>--%>
-    <%--</ul>--%>
-<%--</div>--%>
-<!--close-top-Header-menu-->
 
 <div id="sidebar" >
     <ul>
@@ -53,7 +39,7 @@
         </security:authorize>
 
         <security:authorize ifAnyGranted="ROLE_ADMIN,ROLE_DEPARTMENT_DIRECTOR,ROLE_GROUP_LEADER,ROLE_PRODUCT_MANAGER,ROLE_SOFTWARE_PM,ROLE_DEVELOPER,ROLE_ANONYMOUS">
-            <li class="submenu"><a href="javascript:void(0);"><i class="icon icon-th"></i> <span>组织架构</span></a>
+            <li <c:if test="${ORG_MENU_KEY == 'DEPARTMENT' || ORG_MENU_KEY == 'PERSON'|| ORG_MENU_KEY == 'POSITION'|| ORG_MENU_KEY == 'ROLE' }">class="first-nav-color"</c:if>><a href="${pageContext.request.contextPath}/backend/user/departmentoverview.html"><i class="icon icon-th"></i> <span>组织架构</span></a>
             </li>
         </security:authorize>
 

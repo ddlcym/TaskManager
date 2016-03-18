@@ -29,8 +29,6 @@
             type="text/javascript"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/js/jquery-ui/jquery-ui-1.8.22.custom.css"
           type="text/css"/>
-
-
 </head>
 
 <body>

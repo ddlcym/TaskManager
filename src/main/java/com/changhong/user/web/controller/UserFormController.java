@@ -43,6 +43,7 @@ public class UserFormController extends SimpleFormController{
         List<PositionDTO> positions = positionService.obtainAllPositions();
         request.setAttribute("firstLevel", firstLevel);   //一级部门
         request.setAttribute("positions",positions);
+        request.setAttribute("ORG_MENU_KEY","PERSON");
 
         //编辑用户使用,
         if(userId > 0){
@@ -91,13 +92,6 @@ public class UserFormController extends SimpleFormController{
 
         //绑定的command对象转化为UserDto
          UserDTO userDTO = (UserDTO)command;
-
-        //不能直接绑定到spring-form上的,要单独添加处理
-//        int departmentId = ServletRequestUtils.getIntParameter(request,"departmentId",-1);
-//        userDTO.setDepartmentId(departmentId);
-//
-//        String userPosition = ServletRequestUtils.getStringParameter(request,"position","");
-//        userDTO.setPosition(userPosition);
 
         //清楚roles容器中的旧数据，防止数据重叠
         if(roles != null && roles.length > 0){

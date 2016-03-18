@@ -122,7 +122,7 @@
     }
 
     function setParentDepartment(level) {
-        var contentContainer = jQuery("#parentId");
+        var contentContainer = jQuery("#parentId");  //上级部门对象
         contentContainer.html("");
         var newContent = "";
 

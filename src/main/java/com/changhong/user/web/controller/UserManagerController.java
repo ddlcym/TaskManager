@@ -45,9 +45,7 @@ public class UserManagerController extends AbstractController{
             }
         }
         model.put("departments", list);
-
-//        List<UserDTO> users = userService.obtainAllUser();
-//        model.put("users",users);
+        model.put("ORG_MENU_KEY", "PERSON");
 
         return new ModelAndView("backend/user/useroverview",model);
     }
